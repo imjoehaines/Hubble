@@ -32,7 +32,19 @@ Template.addBranch.events({
 
     'click #addCrmTaskNumber': function() {
         var taskNumber = $('#crmTaskNumber').val();
+        var crmNumbers = Session.get('crmNumbers') || [];
 
+        if (taskNumber === null || taskNumber === '' ||
+            $.inArray(taskNumber, crmNumbers) !== -1 || !$.isNumeric(taskNumber)) {
+            return;
+        }
 
+        crmNumbers.push(taskNumber);
+
+        Session.set('crmNumbers', crmNumbers);
+
+        $('#crmTaskNumber').val('');
+
+        $('#crmNumbers').html(crmNumbers.join(', '));
     }
 });
