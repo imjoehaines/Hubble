@@ -3,38 +3,50 @@ The dev bubble
 
 
 ```js
-// original design
+
 var branch = {
-    id: 12345,
-    start_date: new Date(2015, 04, 02),
-    type: 'support|sprint',
-    crm_task_numbers: [
+    id: 124536,
+    startDate: new Date(2015, 04, 02),
+    type: 'support',
+    crmTaskNumbers: [
         12536,
-        12374
     ],
-    name: '20150403-hubble-creation',
+    name: 'Hubble!',
     description: 'blah blah blah',
     team: 'ipalphafan',
+    state: 'CREATED',
     contributors: [
 
     ],
-    currentState: 'Created',
-    ready_for_review: false,
-    has_passed_review: false,
-    reviewers: [
+    tests: {
+        acceptance: {
+            done: false,
+            testers: []
+        },
+        unit: {
+            done: false,
+            testers: []
+        },
+        browser: {
+            done: false,
+            testers: []
+        }
+    },
+    review: {
+        ready: false,
+        passed: false,
+        reviewers: [
 
-    ],
-    is_acceptance: false,
-    is_unit: false,
-    is_browsers: false,
-    acceptance_testers: [],
-    unit_testers: [],
-    browser_testers: [],
-    is_bamboo_passing: false,
-    is_merged_from_trunk: false,
-    is_merged_to_trunk: false,
-    trunk_commit_id: 'ab35c8d',
-    is_deployed: false
-};
+        ],
+    },
+    isPassingOnCI: false,
+    mergeInfo: {
+        sucessfulMergeFromMaster: false,
+        mergedToMaster: false,
+        masterCommitId: null
+    },
+    isDeployed: false,
+    isDeprecated: false
+}
 
 ```
