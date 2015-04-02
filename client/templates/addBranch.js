@@ -3,7 +3,7 @@ Template.addBranch.helpers({
 });
 
 Template.addBranch.events({
-    'click #submitNewBranch': function () {
+    'click #addNewBranch': function () {
         var type = $('#type').val();
         var crmTaskNumber = Session.get('crmNumbers');
         var name = $('#name').val();
