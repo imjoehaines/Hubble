@@ -47,13 +47,15 @@ Template.viewBranch.events({
             {
                 _id: this._id
             }, {
-                type: type,
-                crmTaskNumber: crmTaskNumber,
-                name: name,
-                sprints: sprints,
-                description: description,
-                team: team,
-                status: status
+                $set: {
+                    type: type,
+                    crmTaskNumber: crmTaskNumber,
+                    name: name,
+                    sprints: sprints,
+                    description: description,
+                    team: team,
+                    status: status
+                }
             }
         );
 

@@ -1,1 +1,7 @@
-/* CSS declarations go here */
+a, a:visited {
+    color: black !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
