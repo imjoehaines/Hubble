@@ -21,5 +21,18 @@ Template.addBranch.events({
             createdOn: new Date(),
             status: 'created'
         });
+
+        type = $('#type').val('');
+        crmTaskNumber = $('#crmTaskNumber').val('');
+        name = $('#name').val('');
+        sprints = $('#sprints').val('');
+        description = $('#description').val('');
+        team = $('#team').val('');
+    },
+
+    'click #addCrmTaskNumber': function() {
+        var taskNumber = $('#crmTaskNumber').val();
+
+
     }
 });

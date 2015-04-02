@@ -16,9 +16,14 @@
 	color:#468847;
 }
 
-.branch-element-status-created {
+.branch-element-status-deployed {
 	background-color:#DFF0D8; 
 	color:#468847;
+}
+
+.branch-element-status-created {
+	background-color:#000000; 
+	color:#ffffff;
 }
 
 .branch-element-status-readyForReview {
@@ -64,7 +69,7 @@
 }
 
 .branch-created {
-	border: 1px solid green;
+	border: 1px solid #000000;
 }
 .branch-readyForReview {
 	border: 1px solid green;
@@ -84,7 +89,15 @@
 .branch-mergedToMaster {
 	border: 1px solid green;
 }
+.branch-inProgress {
+	border: 1px solid green;
+}
 
 .branch:hover {
 	box-shadow: 0px 0px 5px #3C763D;
+}
+
+.branch > a {
+	text-decoration: none;
+	color:black;
 }

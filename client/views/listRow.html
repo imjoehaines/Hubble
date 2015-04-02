@@ -1,27 +1,29 @@
 <template name="listRow">
    <div class="branch branch-{{status}}">
-      <div class="row" style="border-radius:2px;">
-        <div class="col-sm-2 branch-element branch-element-status-{{status}} text-center">
-          {{getStatusName status}}
-        </div>
-        <div class="col-sm-4 hidden-xs branch-element">
-          {{name}}
-        </div>
-        <div class="col-sm-12 visible-xs branch-element text-center">
-          {{name}}
-        </div>
-        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
-          {{team}}
-        </div>
-        <div class="col-sm-2 visible-xs branch-element branch-element-default text-center">
-          {{team}} - Sprint {{sprints}}
-        </div>
-        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
-          Sprint {{sprints}}
-        </div>
-        <div class="col-sm-2 branch-element branch-element-default text-center">
-          {{prettifyDate createdOn.valueOf}}
-        </div>
-      </div>
+   		<a href='viewBranch/{{_id}}'>
+	      <div class="row" style="border-radius:2px;">
+	        <div class="col-sm-2 branch-element branch-element-status-{{status}} text-center">
+	          {{getStatusName status}}
+	        </div>
+	        <div class="col-sm-4 hidden-xs branch-element">
+	          {{name}}
+	        </div>
+	        <div class="col-sm-12 visible-xs branch-element text-center">
+	          {{name}}
+	        </div>
+	        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
+	          {{team}}
+	        </div>
+	        <div class="col-sm-2 visible-xs branch-element branch-element-default text-center">
+	          {{team}} - Sprint {{sprints}}
+	        </div>
+	        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
+	          Sprint {{sprints}}
+	        </div>
+	        <div class="col-sm-2 branch-element branch-element-default text-center">
+	          {{prettifyDate createdOn.valueOf}}
+	        </div>
+	      </div>
+	      </a>
    </div>
 </template>
