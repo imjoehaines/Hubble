@@ -1,9 +1,27 @@
 <template name="listRow">
-    <p>
-        <span>{{prettifyDate createdOn.valueOf}}</span>
-        <span>{{name}}</span>
-        <span>{{team}}</span>
-        <span>{{sprint}}</span>
-        <span>{{status}}</span>
-    </p>
+   <div class="branch">
+      <div class="row" style="border-radius:2px;">
+        <div class="col-sm-2 branch-element branch-element-status-deployed text-center">
+          {{status}}
+        </div>
+        <div class="col-sm-4 hidden-xs branch-element">
+          {{name}}
+        </div>
+        <div class="col-sm-12 visible-xs branch-element text-center">
+          {{name}}
+        </div>
+        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
+          {{team}}
+        </div>
+        <div class="col-sm-2 visible-xs branch-element branch-element-default text-center">
+          {{team}} - Sprint {{sprint}}
+        </div>
+        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center">
+          Sprint {{sprint}}
+        </div>
+        <div class="col-sm-2 branch-element branch-element-default text-center">
+          {{prettifyDate createdOn.valueOf}}
+        </div>
+      </div>
+   </div>
 </template>

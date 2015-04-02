@@ -1,0 +1,38 @@
+.panel:hover {
+	box-shadow: 0px 0px 10px #333333;
+}
+
+.branch-element {
+	padding-top: 15px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+	padding-bottom: 15px;
+}
+
+.branch-element-default {
+	background-color:#dddddd; 
+	color:#111111;
+}
+
+.branch-element-status-deployed {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch {
+	cursor: pointer;
+	display:block;
+	border: 1px solid green;
+	padding:10px 15px;
+}
+
+.branch-deployed {
+	cursor: pointer;
+	display:block;
+	border: 1px solid green;
+	padding:10px 15px;
+}
+
+.branch:hover {
+	box-shadow: 0px 0px 5px #3C763D;
+}

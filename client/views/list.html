@@ -2,14 +2,8 @@
     <button class="addBranch">
         Add New Branch
     </button>
-    <p>
-        <span>startDate</span>
-        <span>name</span>
-        <span>teams</span>
-        <span>sprint</span>
-        <span>status</span>
-    </p>
     {{#each branches}}
         {{> listRow}}
+        <br>
     {{/each}}
 </template>
