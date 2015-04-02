@@ -3,10 +3,28 @@
         Add New Branch
     </button>
     <p>
-        <span>2015-04-01</span>
-        <span>20150401-a-branch-name</span>
-        <span>Alpha Team</span>
-        <span>50</span>
-        <span>Created</span>
+        <span>startDate</span>
+        <span>name</span>
+        <span>teams
+        </span>
+        <span>sprint</span>
+        <span>status</span>
+    </p>
+    {{#each branches}}
+        {{> branchListView}}
+    {{/each}}
+</template>
+
+<template name="branchListView">
+    <p>
+        <span>{{startDate}}</span>
+        <span>{{name}}</span>
+        <span>
+        {{#each teams}}
+            {{name}}
+        {{/each}}
+        </span>
+        <span>{{sprint}}</span>
+        <span>{{status}}</span>
     </p>
 </template>
