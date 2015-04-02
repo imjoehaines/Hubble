@@ -1,41 +1,46 @@
 <template name="addBranch">
-    <label for="type">Type:
-        <select id="type">
+<div class="form col-sm-6 col-sm-offset-3">
+    <div class="form-group">
+    <label for="type">Type:</label>
+        <select id="type" class="form-control">
             <option>Sprint</option>
             <option>Support</option>
         </select>
-    </label>
-
-    <label for="crmTaskNumber">CRM Task Number:
-        <input type="text" id="crmTaskNumber">
-    </label>
-    <button id="addCrmTaskNumber">
-        +
-    </button>
-    <span id="crmNumbers"></span>
-
-    <label for="name">Name:
-        <input type="text" id="name">
-    </label>
-
-    <label for="sprints">Sprints:
-        <input type="text" id="sprints">
-    </label>
-
-    <label for="description">Description:
-        <textarea id="description">
-        </textarea>
-    </label>
-
-    <label for="team">Team:
-        <select id="team">
-            <option>Alpha Team</option>
-            <option>Astro Fan</option>
-            <option>IPAs and APIs</option>
-        </select>
-    </label>
-
-    <button id="submitNewBranch">
+    </div>
+    <div class="form-group">
+        <label for="crmTaskNumber">CRM Task Number:</label>
+        <div class="input-group">
+            <input type="text" id="crmTaskNumber" class="form-control">
+            <div class="input-group-addon">
+                <a id="addCrmTaskNumber">+</a>
+            </div>
+        </div>
+        <p id="crmNumbers"></p>
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="sprints">Sprints:</label>
+        <input type="text" id="sprints" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="team">Team:</label>
+            <select id="team" class="form-control">
+                <option>Alpha Team</option>
+                <option>Astro Fan</option>
+                <option>IPAs and APIs</option>
+            </select>
+    </div>
+    <div class="form-group">
+    <button id="submitNewBranch" class="btn btn-success btn-block">
         Add Branch
     </button>
+    </div>
+    </div>
 </template>
