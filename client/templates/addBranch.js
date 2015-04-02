@@ -23,7 +23,35 @@ Template.addBranch.events({
             description: description,
             team: team,
             createdOn: new Date(),
-            status: 'created'
+            status: 'created',
+            contributors: [],
+            tests: {
+                acceptance: {
+                    done: false,
+                    testers: []
+                },
+                unit: {
+                    done: false,
+                    testers: []
+                },
+                browser: {
+                    done: false,
+                    testers: []
+                }
+            },
+            review: {
+                ready: false,
+                passed: false,
+                reviewers: [],
+            },
+            isPassingOnCI: false,
+            mergeInfo: {
+                sucessfulMergeFromMaster: false,
+                mergedToMaster: false,
+                masterCommitId: null
+            },
+            isDeployed: false,
+            isDeprecated: false
         });
 
         type = $('#type').val('');
