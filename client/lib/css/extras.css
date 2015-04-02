@@ -12,13 +12,13 @@
 }
 
 .branch-element-status-deployed {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#18AB13; 
+	color:#ffffff;
 }
 
-.branch-element-status-deployed {
-	background-color:#DFF0D8; 
-	color:#468847;
+.branch-element-status-inProgress {
+	background-color:#F71631; 
+	color:#ffffff;
 }
 
 .branch-element-status-created {
@@ -27,33 +27,33 @@
 }
 
 .branch-element-status-readyForReview {
-	background-color:#DFF0D8; 
+	background-color:#F77C168; 
 	color:#468847;
 }
 
 .branch-element-status-prepareForMaster {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#16CEF7; 
+	color:#ffffff;
 }
 
 .branch-element-status-readyForMaster {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#161AF7; 
+	color:#ffffff;
 }
 
 .branch-element-status-inReview {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#F7F416; 
+	color:#000000;
 }
 
 .branch-element-status-deprecated {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#BFBFBF; 
+	color:#000000;
 }
 
 .branch-element-status-mergedToMaster {
-	background-color:#DFF0D8; 
-	color:#468847;
+	background-color:#1EF716; 
+	color:#000000;
 }
 
 .branch {
@@ -65,36 +65,57 @@
 }
 
 .branch-deployed {
-	border: 1px solid green;
+	border: 1px solid #18AB13;
 }
 
 .branch-created {
 	border: 1px solid #000000;
 }
 .branch-readyForReview {
-	border: 1px solid green;
+	border: 1px solid #F77C16;
 }
 .branch-prepareForMaster {
-	border: 1px solid green;
+	border: 1px solid #16CEF7;
 }
 .branch-readyForMaster {
-	border: 1px solid green;
+	border: 1px solid #161AF7;
 }
 .branch-inReview {
-	border: 1px solid green;
+	border: 1px solid #F7F416;
 }
 .branch-deprecated {
-	border: 1px solid green;
+	border: 1px solid #BFBFBF;
 }
 .branch-mergedToMaster {
-	border: 1px solid green;
+	border: 1px solid #1EF716;
 }
 .branch-inProgress {
-	border: 1px solid green;
+	border: 1px solid #F71631;
 }
 
-.branch:hover {
-	box-shadow: 0px 0px 5px #3C763D;
+.branch-deployed:hover {
+	box-shadow: 0px 0px 5px #18AB13;
+}
+.branch-created:hover {
+	box-shadow: 0px 0px 5px #000000;
+}
+.branch-readyForReview:hover {
+	box-shadow: 0px 0px 5px #F77C16;
+}
+.branch-prepareForMaster:hover {
+	box-shadow: 0px 0px 5px #16CEF7;
+}
+.branch-inReview:hover {
+	box-shadow: 0px 0px 5px #F7F41;
+}
+.branch-deprecated:hover {
+	box-shadow: 0px 0px 5px #BFBFBF;
+}
+.branch-mergedToMaster:hover {
+	box-shadow: 0px 0px 5px #1EF716;
+}
+.branch-inProgress:hover {
+	box-shadow: 0px 0px 5px #F71631;
 }
 
 .branch > a {
