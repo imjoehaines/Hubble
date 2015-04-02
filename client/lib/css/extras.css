@@ -16,6 +16,41 @@
 	color:#468847;
 }
 
+.branch-element-status-created {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-readyForReview {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-prepareForMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-readyForMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-inReview {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-deprecated {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-mergedToMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
 .branch {
 	cursor: pointer;
 	display:block;
@@ -25,10 +60,29 @@
 }
 
 .branch-deployed {
-	cursor: pointer;
-	display:block;
 	border: 1px solid green;
-	padding:10px 15px;
+}
+
+.branch-created {
+	border: 1px solid green;
+}
+.branch-readyForReview {
+	border: 1px solid green;
+}
+.branch-prepareForMaster {
+	border: 1px solid green;
+}
+.branch-readyForMaster {
+	border: 1px solid green;
+}
+.branch-inReview {
+	border: 1px solid green;
+}
+.branch-deprecated {
+	border: 1px solid green;
+}
+.branch-mergedToMaster {
+	border: 1px solid green;
 }
 
 .branch:hover {
