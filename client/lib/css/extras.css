@@ -7,53 +7,53 @@
 }
 
 .branch-element-default {
-	background-color:#dddddd; 
+	background-color:#dddddd;
 	color:#111111;
 }
 
 .branch-element-status-deployed {
-	background-color:#18AB13; 
+	background-color:#18AB13;
 	color:#ffffff;
 }
 
 .branch-element-status-inProgress {
-	background-color:#F71631; 
+	background-color:#F71631;
 	color:#ffffff;
 }
 
 .branch-element-status-created {
-	background-color:#000000; 
+	background-color:#000000;
 	color:#ffffff;
 }
 
 .branch-element-status-readyForReview {
-	background-color:#F77C16; 
+	background-color:#F77C16;
 	color:#ffffff;
 }
 
 .branch-element-status-prepareForMaster {
-	background-color:#16CEF7; 
+	background-color:#16CEF7;
 	color:#ffffff;
 }
 
 .branch-element-status-readyForMaster {
-	background-color:#161AF7; 
+	background-color:#161AF7;
 	color:#ffffff;
 }
 
 .branch-element-status-inReview {
-	background-color:#F7F416; 
-	color:#ffffff;
+	background-color:#F7F416;
+	color:#111111;
 }
 
 .branch-element-status-deprecated {
-	background-color:#BFBFBF; 
+	background-color:#BFBFBF;
 	color:#ffffff;
 }
 
 .branch-element-status-mergedToMaster {
-	background-color:#1EF716; 
-	color:#ffffff;
+	background-color:#1EF716;
+	color:#111111;
 }
 
 .branch {
