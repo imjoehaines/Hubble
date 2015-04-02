@@ -27,8 +27,8 @@
 }
 
 .branch-element-status-readyForReview {
-	background-color:#F77C168; 
-	color:#468847;
+	background-color:#F77C16; 
+	color:#ffffff;
 }
 
 .branch-element-status-prepareForMaster {
@@ -43,17 +43,17 @@
 
 .branch-element-status-inReview {
 	background-color:#F7F416; 
-	color:#000000;
+	color:#ffffff;
 }
 
 .branch-element-status-deprecated {
 	background-color:#BFBFBF; 
-	color:#000000;
+	color:#ffffff;
 }
 
 .branch-element-status-mergedToMaster {
 	background-color:#1EF716; 
-	color:#000000;
+	color:#ffffff;
 }
 
 .branch {
@@ -102,11 +102,14 @@
 .branch-readyForReview:hover {
 	box-shadow: 0px 0px 5px #F77C16;
 }
+.branch-readyForMaster:hover {
+	box-shadow: 0px 0px 5px #161AF7;
+}
 .branch-prepareForMaster:hover {
 	box-shadow: 0px 0px 5px #16CEF7;
 }
 .branch-inReview:hover {
-	box-shadow: 0px 0px 5px #F7F41;
+	box-shadow: 0px 0px 5px #F7F416;
 }
 .branch-deprecated:hover {
 	box-shadow: 0px 0px 5px #BFBFBF;
