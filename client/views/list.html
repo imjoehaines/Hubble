@@ -5,26 +5,11 @@
     <p>
         <span>startDate</span>
         <span>name</span>
-        <span>teams
-        </span>
+        <span>teams</span>
         <span>sprint</span>
         <span>status</span>
     </p>
     {{#each branches}}
-        {{> branchListView}}
+        {{> listRow}}
     {{/each}}
-</template>
-
-<template name="branchListView">
-    <p>
-        <span>{{startDate}}</span>
-        <span>{{name}}</span>
-        <span>
-        {{#each teams}}
-            {{name}}
-        {{/each}}
-        </span>
-        <span>{{sprint}}</span>
-        <span>{{status}}</span>
-    </p>
 </template>
