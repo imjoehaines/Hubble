@@ -1,5 +1,6 @@
 <template name="viewBranch">
 <div class="form col-sm-6 col-sm-offset-3">
+<h2>{{name}}</h2>
     <div class="form-group">
     <label for="type">Type:</label>
         <select id="type" class="form-control">
@@ -31,11 +32,83 @@
     </div>
     <div class="form-group">
         <label for="team">Team:</label>
-            <select id="team" class="form-control" value="{{team}}">
-                <option>Alpha Team</option>
-                <option>Astro Fan</option>
-                <option>IPAs and APIs</option>
-            </select>
+        <select id="team" class="form-control" value="{{team}}">
+            <option>Alpha Team</option>
+            <option>Astro Fan</option>
+            <option>IPAs and APIs</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="contributors">Contributors:</label>
+        <input type="text" id="contributors" class="form-control" value="{{contributors}}">
+    </div>
+    <h3>Tests</h3>
+    <div class="form-group">
+        <label for="isAcceptance">Acceptance tests covereage?:</label>
+        <select id="isAcceptance" class="form-control" value="{{tests.acceptance.done}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+            <option value="null">N/A</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="isUnit">Unit tests coverage?:</label>
+        <select id="isUnit" class="form-control" value="{{tests.unit.done}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+            <option value="null">N/A</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="isBrowser">Browser tests coverage?:</label>
+        <select id="isBrowser" class="form-control" value="{{tests.browser.done}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+            <option value="null">N/A</option>
+        </select>
+    </div>
+    <h3>CI</h3>
+    <div class="form-group">
+        <label for="isPassingOnCI">Is passing on Bamboo?:</label>
+        <select id="isPassingOnCI" class="form-control" value="{{isPassingOnCI}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+        </select>
+    </div>
+    <h3>Merge Info</h3>
+    <div class="form-group">
+        <label for="sucessfulMergeFromMaster">Successful merge from master?:</label>
+        <select id="sucessfulMergeFromMaster" class="form-control" value="{{mergeInfo.sucessfulMergeFromMaster}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="mergedToMaster">Merged to master?:</label>
+        <select id="mergedToMaster" class="form-control" value="{{mergeInfo.mergedToMaster}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+        </select>
+    </div>
+    <div class="form-group">
+    <label for="masterCommitId">Master commit Id:</label>
+        <input type="text" id="masterCommitId" class="form-control" value="{{masterCommitId}}">
+    </div>
+    <h3>Deploy</h3>
+    <div class="form-group">
+        <label for="isDeployed">Has been deployed?:</label>
+        <select id="isDeployed" class="form-control" value="{{isDeployed}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+        </select>
+    </div>
+    <h3>Deprecated</h3>
+    <div class="form-group">
+        <label for="isDeprecated">Is branch deprecated?:</label>
+        <select id="isDeprecated" class="form-control" value="{{isDeprecated}}">
+            <option value=false>No</option>
+            <option value=true>Yes</option>
+        </select>
     </div>
     <div class="form-group">
     <button id="updateBranch" class="btn btn-success btn-block">
