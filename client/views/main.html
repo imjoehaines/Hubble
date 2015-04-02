@@ -1,8 +1,10 @@
-<head>
-    <title>Hubble</title>
-</head>
-<body>
-    <h1>Welcome to Meteor!</h1>
+<template name="main">
+    <head>
+        <title>Hubble</title>
+    </head>
+    <body>
+        <h1>Welcome to Meteor!</h1>
 
-    {{> hello}}
-</body>
+        {{> yield}}
+    </body>
+</template>
