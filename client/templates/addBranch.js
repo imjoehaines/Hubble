@@ -27,7 +27,7 @@ Template.addBranch.events({
         });
 
         type = $('#type').val('');
-        crmTaskNumber = $('#crmTaskNumber').val('');
+        Session.set('crmNumbers', undefined);
         name = $('#name').val('');
         sprints = $('#sprints').val('');
         description = $('#description').val('');
