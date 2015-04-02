@@ -5,11 +5,15 @@ Template.addBranch.helpers({
 Template.addBranch.events({
     'click #submitNewBranch': function () {
         var type = $('#type').val();
-        var crmTaskNumber = $('#crmTaskNumber').val();
+        var crmTaskNumber = Session.get('crmNumbers');
         var name = $('#name').val();
         var sprints = $('#sprints').val();
         var description = $('#description').val();
         var team = $('#team').val();
+
+        if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+            return;
+        }
 
         BranchList.insert({
             type: type,
