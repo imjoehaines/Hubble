@@ -2,15 +2,25 @@
     <button class="addBranch btn btn-success">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Branch
     </button>
+    <hr>
     <div class="row">
         <div class="col-md-12">
-            
-            {{#each branches}}
-                {{> listRow}}
-            {{/each}}
+            {{#if branchlist.count}}
+                {{#each branches}}
+                    {{> listRow}}
+                {{/each}}
+            {{else}}
+                {{> noBranchMessage}}
+            {{/if}}
             
         </div>
     </div>
     <br>
    
+</template>
+
+<template name="noBranchMessage">
+    <div class="well text-center">
+        <h1>Oh no! You have no branches</h1>
+    </div>
 </template>
