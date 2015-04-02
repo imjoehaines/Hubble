@@ -1,6 +1,6 @@
 // BranchList.remove({});
 
-if (BranchList.find().count() === 1) {
+if (BranchList.find().count() === 0) {
     BranchList.insert({
         name: 'Hubble',
         team: 'AlphaTeam',

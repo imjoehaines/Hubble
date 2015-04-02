@@ -7,28 +7,27 @@ Template.viewBranch.events({
         var description = $('#description').val();
         var team = $('#team').val();
 
-        if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-            return;
-        }
+        // if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+        //     return;
+        // }
 
+       var status;
 
-        var status;
-
-        if (branch.isDeprecated) {
+        if (this.isDeprecated) {
             status = 'deprecated';
-        } else if (branch.contributors.length === 0) {
+        } else if (this.contributors.length === 0) {
             status = 'created';
         } else {
-            if (branch.tests.acceptance.done !== false &&
-                branch.tests.unit.done !== false &&
-                branch.tests.browser.done !== false &&
-                branch.isPassingOnCI &&
-                branch.review.ready) {
-                if (branch.review.reviewers.length > 0) {
-                    if (branch.review.passed) {
-                        if (branch.mergeInfo.sucessfulMergeFromMaster) {
-                            if (branch.mergeInfo.mergedToMaster && branch.mergeInfo.masterCommitId !== null) {
-                                if (branch.isDeployed) {
+            if (this.tests.acceptance.done !== false &&
+                this.tests.unit.done !== false &&
+                this.tests.browser.done !== false &&
+                this.isPassingOnCI &&
+                this.review.ready) {
+                if (this.review.reviewers.length > 0) {
+                    if (this.review.passed) {
+                        if (this.mergeInfo.sucessfulMergeFromMaster) {
+                            if (this.mergeInfo.mergedToMaster && this.mergeInfo.masterCommitId !== null) {
+                                if (this.isDeployed) {
                                     status = 'deployed';
                                 }
                                 status = 'mergedToMaster';
