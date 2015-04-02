@@ -1,11 +1,12 @@
+BranchList.remove({});
+
 if (BranchList.find().count() === 0) {
     BranchList.insert({
         name: 'Hubble',
         team: 'AlphaTeam',
         createdOn: new Date(),
         sprint: 49,
-        status: 'Created',
-        statusSelector: 'created',
+        status: 'created',
         crmTaskNumbers: [123, 456, 789],
         description: 'blah blah blah',
         contributors: [],
@@ -42,8 +43,7 @@ if (BranchList.find().count() === 0) {
         team: 'Astro Fan',
         createdOn: new Date(),
         sprint: 49,
-        status: 'Created',
-        statusSelector: 'created',
+        status: 'created',
         crmTaskNumbers: [123, 456, 789],
         description: 'blah blah blah',
         contributors: [],
