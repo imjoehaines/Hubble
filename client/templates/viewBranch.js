@@ -27,7 +27,7 @@ Template.viewBranch.events({
                 if (branch.review.reviewers.length > 0) {
                     if (branch.review.passed) {
                         if (branch.mergeInfo.sucessfulMergeFromMaster) {
-                            if (branch.mergeInfo.mergedToMaster && branch.mergeInfo.masterCommitId != null) {
+                            if (branch.mergeInfo.mergedToMaster && branch.mergeInfo.masterCommitId !== null) {
                                 if (branch.isDeployed) {
                                     status = 'deployed';
                                 }
