@@ -8,6 +8,10 @@ var branch = {
     id: 124536,
     startDate: new Date(2015, 04, 02),
     type: 'support',
+    sprints: [
+        49,
+        50
+    ],
     crmTaskNumbers: [
         12536,
     ],
