@@ -11,6 +11,12 @@
 	color:#111111;
 }
 
+@media (min-width: 768px) {
+	.branch-element-default.border-right {
+		border-right:5px solid #ffffff;
+	}
+}
+
 .branch-element-status-deployed {
 	background-color:#18AB13;
 	color:#ffffff;

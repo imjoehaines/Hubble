@@ -1,0 +1,1 @@
+Template.viewBranch.rendered = function() { console.log(this)}
