@@ -21,5 +21,7 @@ Template.addBranch.events({
             createdOn: new Date(),
             status: 'created'
         });
+
+
     }
 });
