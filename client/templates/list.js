@@ -1,6 +1,6 @@
 Template.list.helpers({
     branches: function () {
-        return BranchList.find();
+        return BranchList.find({}, {sort: {createdOn: -1}});
     }
 });
 

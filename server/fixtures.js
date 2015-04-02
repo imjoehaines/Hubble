@@ -1,4 +1,4 @@
-BranchList.remove({});
+// BranchList.remove({});
 
 if (BranchList.find().count() === 0) {
     BranchList.insert({
