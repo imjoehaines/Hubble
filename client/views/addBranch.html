@@ -1,3 +1,40 @@
 <template name="addBranch">
-add new branch
+    <label for="type">Type:
+        <select id="type">
+            <option>Sprint</option>
+            <option>Support</option>
+        </select>
+    </label>
+
+    <label for="crmTaskNumber">CRM Task Number:
+        <input type="text" id="crmTaskNumber">
+    </label>
+    <button id="addCrmTaskNumber">
+        +
+    </button>
+
+    <label for="name">Name:
+        <input type="text" id="name">
+    </label>
+
+    <label for="sprints">Sprints:
+        <input type="text" id="sprints">
+    </label>
+
+    <label for="description">Description:
+        <textarea id="description">
+        </textarea>
+    </label>
+
+    <label for="team">Team:
+        <select id="team">
+            <option>Alpha Team</option>
+            <option>Astro Fan</option>
+            <option>IPAs and APIs</option>
+        </select>
+    </label>
+
+    <button id="submitNewBranch">
+        Add Branch
+    </button>
 </template>

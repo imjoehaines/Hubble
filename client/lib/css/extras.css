@@ -1,0 +1,90 @@
+
+.branch-element {
+	padding-top: 15px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+	padding-bottom: 15px;
+}
+
+.branch-element-default {
+	background-color:#dddddd; 
+	color:#111111;
+}
+
+.branch-element-status-deployed {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-created {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-readyForReview {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-prepareForMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-readyForMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-inReview {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-deprecated {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch-element-status-mergedToMaster {
+	background-color:#DFF0D8; 
+	color:#468847;
+}
+
+.branch {
+	cursor: pointer;
+	display:block;
+	border: 1px solid green;
+	padding:10px 15px;
+	margin-top:10px;
+}
+
+.branch-deployed {
+	border: 1px solid green;
+}
+
+.branch-created {
+	border: 1px solid green;
+}
+.branch-readyForReview {
+	border: 1px solid green;
+}
+.branch-prepareForMaster {
+	border: 1px solid green;
+}
+.branch-readyForMaster {
+	border: 1px solid green;
+}
+.branch-inReview {
+	border: 1px solid green;
+}
+.branch-deprecated {
+	border: 1px solid green;
+}
+.branch-mergedToMaster {
+	border: 1px solid green;
+}
+
+.branch:hover {
+	box-shadow: 0px 0px 5px #3C763D;
+}

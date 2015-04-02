@@ -2,11 +2,7 @@
     <button class="addBranch">
         Add New Branch
     </button>
-    <p>
-        <span>2015-04-01</span>
-        <span>20150401-a-branch-name</span>
-        <span>Alpha Team</span>
-        <span>50</span>
-        <span>Created</span>
-    </p>
+    {{#each branches}}
+        {{> listRow}}
+    {{/each}}
 </template>
