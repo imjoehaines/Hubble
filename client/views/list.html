@@ -1,8 +1,16 @@
 <template name="list">
-    <button class="addBranch">
-        Add New Branch
+    <button class="addBranch btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Branch
     </button>
-    {{#each branches}}
-        {{> listRow}}
-    {{/each}}
+    <div class="row">
+        <div class="col-md-12">
+            
+            {{#each branches}}
+                {{> listRow}}
+            {{/each}}
+            
+        </div>
+    </div>
+    <br>
+   
 </template>
