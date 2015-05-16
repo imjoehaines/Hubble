@@ -6,8 +6,8 @@
 }
 
 .branch-element-default {
-	background-color:#dddddd;
-	color:#111111;
+	background-color: #dddddd;
+	color: #111111;
 }
 
 @media (min-width: 768px) {
@@ -17,116 +17,131 @@
 }
 
 .branch-element-status-deployed {
-	background-color:#18AB13;
-	color:#ffffff;
+	background-color: #18AB13;
+	color: #ffffff;
 }
 
 .branch-element-status-inProgress {
-	background-color:#F71631;
-	color:#ffffff;
+	background-color: #F71631;
+	color: #ffffff;
 }
 
 .branch-element-status-created {
-	background-color:#000000;
-	color:#ffffff;
+	background-color: #000000;
+	color: #ffffff;
 }
 
 .branch-element-status-readyForReview {
-	background-color:#F77C16;
-	color:#ffffff;
+	background-color: #F77C16;
+	color: #ffffff;
 }
 
 .branch-element-status-prepareForMaster {
-	background-color:#16CEF7;
-	color:#ffffff;
+	background-color: #16CEF7;
+	color: #ffffff;
 }
 
 .branch-element-status-readyForMaster {
-	background-color:#161AF7;
-	color:#ffffff;
+	background-color: #161AF7;
+	color: #ffffff;
 }
 
 .branch-element-status-inReview {
-	background-color:#F7F416;
-	color:#111111;
+	background-color: #F7F416;
+	color: #111111;
 }
 
 .branch-element-status-deprecated {
-	background-color:#BFBFBF;
-	color:#ffffff;
+	background-color: #BFBFBF;
 }
 
 .branch-element-status-mergedToMaster {
-	background-color:#1EF716;
-	color:#111111;
+	background-color: #1EF716;
+	color: #111111;
 }
 
 .branch {
 	cursor: pointer;
-	display:block;
-	border: 1px solid green;
-	padding:10px 15px;
-	margin-top:10px;
+	display: block;
+	border: 1px solid black;
+	padding: 10px 15px;
+	margin-top: 10px;
 }
 
 .branch-deployed {
-	border: 1px solid #18AB13;
+	border-color: #18AB13;
 }
 
 .branch-created {
-	border: 1px solid #000000;
+	/*border-color: #000000;*/
 }
+
 .branch-readyForReview {
-	border: 1px solid #F77C16;
+	border-color: #F77C16;
 }
+
 .branch-prepareForMaster {
-	border: 1px solid #16CEF7;
+	border-color: #16CEF7;
 }
+
 .branch-readyForMaster {
-	border: 1px solid #161AF7;
+	border-color: #161AF7;
 }
+
 .branch-inReview {
-	border: 1px solid #F7F416;
+	border-color: #F7F416;
 }
+
 .branch-deprecated {
-	border: 1px solid #BFBFBF;
+	border-color: #BFBFBF;
+    opacity: 0.5;
 }
+
 .branch-mergedToMaster {
-	border: 1px solid #1EF716;
+	border-color: #1EF716;
 }
+
 .branch-inProgress {
-	border: 1px solid #F71631;
+	border-color: #F71631;
 }
 
 .branch-deployed:hover {
 	box-shadow: 0px 0px 5px #18AB13;
 }
+
 .branch-created:hover {
 	box-shadow: 0px 0px 5px #000000;
 }
+
 .branch-readyForReview:hover {
 	box-shadow: 0px 0px 5px #F77C16;
 }
+
 .branch-readyForMaster:hover {
 	box-shadow: 0px 0px 5px #161AF7;
 }
+
 .branch-prepareForMaster:hover {
 	box-shadow: 0px 0px 5px #16CEF7;
 }
+
 .branch-inReview:hover {
 	box-shadow: 0px 0px 5px #F7F416;
 }
+
 .branch-deprecated:hover {
 	box-shadow: 0px 0px 5px #BFBFBF;
 }
+
 .branch-mergedToMaster:hover {
 	box-shadow: 0px 0px 5px #1EF716;
 }
+
 .branch-inProgress:hover {
 	box-shadow: 0px 0px 5px #F71631;
 }
 
 .branch > a {
 	text-decoration: none;
-	color:black;
+	color: black;
 }
