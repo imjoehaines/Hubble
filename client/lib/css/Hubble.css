@@ -33,7 +33,5 @@ hr {
 }
 
 .branchOptions {
-    clear: both;
-    overflow: hidden;
     padding-bottom: 10px;
 }
