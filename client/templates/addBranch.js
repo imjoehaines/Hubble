@@ -68,7 +68,7 @@ Template.addBranch.events({
 
     'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
         // if this is a keypress event make sure the key is return
-        if (event.type === 'keypress' && event.which !== 13) return;
+        if (event.type === 'keypress' && event.which !== 13) { return; }
 
         var taskNumber = $('#crmTaskNumber').val();
         var crmNumbers = Session.get('crmNumbers') || [];

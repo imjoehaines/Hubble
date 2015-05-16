@@ -86,7 +86,7 @@ Template.viewBranch.events({
 
         // need a callback to make this a synchronous request
         Meteor.call('getBranchStatus', branch, function (error, status) {
-            if (error) return; // TODO: do something with error
+            if (error) { return; } // TODO: do something with error
 
             branch.status = status;
             BranchList.update({_id: branchId}, {$set: branch});
@@ -101,7 +101,7 @@ Template.viewBranch.events({
 
     'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
         // if this is a keypress event make sure the key is return
-        if (event.type === 'keypress' && event.which !== 13) return;
+        if (event.type === 'keypress' && event.which !== 13) { return; }
 
         var taskNumber = $('#crmTaskNumber').val();
         var crmNumbers = Session.get('crmNumbers') || [];

@@ -1,8 +1,8 @@
-Template.registerHelper("prettifyDate", function(timestamp) {
+Template.registerHelper('prettifyDate', function(timestamp) {
     return new Date(timestamp).toISOString().slice(0, 10);
 });
 
-Template.registerHelper("getStatusName", function(status) {
+Template.registerHelper('getStatusName', function(status) {
     var statuses = {
         created: 'Created',
         inProgress: 'In Progress',
