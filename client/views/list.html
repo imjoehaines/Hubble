@@ -1,4 +1,20 @@
 <template name="list">
+    <label for="filterBranches">
+        Filter Branches:
+        <select name="filterBranches" id="filterBranches">
+            <option value="all">Show All</option>
+            <option value="created">Created</option>
+            <option value="inProgress">In Progress</option>
+            <option value="readyForReview">Ready for Review</option>
+            <option value="inReview">In Review</option>
+            <option value="prepareForMaster">Prepare for Master</option>
+            <option value="readyForMaster">Ready for Master</option>
+            <option value="mergedToMaster">Merged to Master</option>
+            <option value="deployed">Deployed</option>
+            <option value="deprecated">Deprecated</option>
+        </select>
+    </label>
+
     <button class="addBranch btn btn-success">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Branch
     </button>
@@ -11,7 +27,7 @@
                 {{/each}}
             {{else}}
                 <div class="well text-center">
-                    <h1>Oh no! You have no branches</h1>
+                    <h1>Oh no! You have no branches :(</h1>
                 </div>
             {{/if}}
         </div>

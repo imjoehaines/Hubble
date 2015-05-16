@@ -23,3 +23,11 @@ header.jumbotron {
     padding: 2px 4px;
     float: right;
 }
+
+.addBranch {
+    float: right;
+}
+
+hr {
+    clear: both;
+}
