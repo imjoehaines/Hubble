@@ -1,10 +1,10 @@
 Template.addBranch.helpers({
     'hasCrmTaskNumbers': function() {
-        return Session.get('crmNumbers') && Session.get('crmNumbers').length > 0;
+        return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').length > 0;
     },
 
     'getCrmTaskNumbers': function() {
-        return Session.get('crmNumbers').join(', ');
+        return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').join(', ');
     }
 });
 

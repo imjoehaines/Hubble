@@ -31,3 +31,7 @@ header.jumbotron {
 .filterBranchesLabel, .sortBranchesLabel {
     margin-left: 10px
 }
+
+.velocity-report.empty {
+    display: none !important;
+}
