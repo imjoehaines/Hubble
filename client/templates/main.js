@@ -18,3 +18,12 @@ Template.registerHelper('getStatusName', function(status) {
 
     return statuses[status];
 });
+
+Meteor.startup(function () {
+    sAlert.config({
+        effect: 'jelly',
+        position: 'top-right',
+        timeout: 5000,
+        html: false
+    });
+});

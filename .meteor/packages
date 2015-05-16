@@ -12,3 +12,5 @@ jquery
 momentjs:moment
 sanjo:jasmine
 velocity:html-reporter
+juliancwirko:s-alert
+juliancwirko:s-alert-jelly

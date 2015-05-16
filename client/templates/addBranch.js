@@ -22,6 +22,7 @@ Template.addBranch.events({
         var team = $('#team').val();
 
         if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+            sAlert.error('No');
             return;
         }
 
