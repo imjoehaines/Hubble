@@ -10,3 +10,5 @@ accounts-google
 iron:router
 jquery
 momentjs:moment
+sanjo:jasmine
+velocity:html-reporter
