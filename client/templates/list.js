@@ -8,7 +8,7 @@ Template.list.helpers({
         var sortField = Session.get('sort');
         var sortDirection = Session.get('sortDirection');
 
-        sortOptions = {};
+        var sortOptions = {};
         sortOptions[sortField] = sortDirection;
 
         // default to show all non-deployed & non-deprecated branches
