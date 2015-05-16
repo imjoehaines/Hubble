@@ -22,7 +22,6 @@ Template.viewBranch.events({
         var branchId = this._id;
 
         var type = $('#type').val();
-        var crmTaskNumber = Session.get('crmNumbers');
         var name = $('#name').val();
         var sprints = $('#sprints').val();
         var description = $('#description').val();
@@ -31,17 +30,18 @@ Template.viewBranch.events({
         var reviewers = $('#reviewers').val();
         var masterCommitId = $('#masterCommitId').val();
 
-        // convert strings into boolean - this is gross FIXME
-        var isAcceptance = $('#isAcceptance').val() === 'true' && true || $('#isAcceptance').val() === 'false' && false || null;
-        var isUnit = $('#isUnit').val() === 'true' && true || $('#isUnit').val() === 'false' && false || null;
-        var isBrowser = $('#isBrowser').val() === 'true' && true || $('#isBrowser').val() === 'false' && false || null;
-        var isPassingOnCI = $('#isPassingOnCI').val() === 'true' && true || $('#isPassingOnCI').val() === 'false' && false || null;
-        var isReadyForReview = $('#isReadyForReview').val() === 'true' && true || $('#isReadyForReview').val() === 'false' && false || null;
-        var isReviewed = $('#isReviewed').val() === 'true' && true || $('#isReviewed').val() === 'false' && false || null;
-        var sucessfulMergeFromMaster = $('#sucessfulMergeFromMaster').val() === 'true' && true || $('#sucessfulMergeFromMaster').val() === 'false' && false || null;
-        var mergedToMaster = $('#mergedToMaster').val() === 'true' && true || $('#mergedToMaster').val() === 'false' && false || null;
-        var isDeployed = $('#isDeployed').val() === 'true' && true || $('#isDeployed').val() === 'false' && false || null;
-        var isDeprecated = $('#isDeprecated').val() === 'true' && true || $('#isDeprecated').val() === 'false' && false || null;
+        var crmTaskNumber = Session.get('crmNumbers');
+
+        var isAcceptance = getBooleanFromString($('#isAcceptance').val());
+        var isUnit = getBooleanFromString($('#isUnit').val());
+        var isBrowser = getBooleanFromString($('#isBrowser').val());
+        var isPassingOnCI = getBooleanFromString($('#isPassingOnCI').val());
+        var isReadyForReview = getBooleanFromString($('#isReadyForReview').val());
+        var isReviewed = getBooleanFromString($('#isReviewed').val());
+        var sucessfulMergeFromMaster = getBooleanFromString($('#sucessfulMergeFromMaster').val());
+        var mergedToMaster = getBooleanFromString($('#mergedToMaster').val());
+        var isDeployed = getBooleanFromString($('#isDeployed').val());
+        var isDeprecated = getBooleanFromString($('#isDeprecated').val());
 
         if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
             return;
