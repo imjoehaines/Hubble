@@ -1,5 +1,6 @@
 Template.registerHelper('prettifyDate', function(timestamp) {
-    return new Date(timestamp).toISOString().slice(0, 10);
+    return moment(timestamp).format('MMMM Do YYYY');
+    //new Date(timestamp).toISOString().slice(0, 10);
 });
 
 Template.registerHelper('getStatusName', function(status) {

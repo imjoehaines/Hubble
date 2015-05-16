@@ -1,6 +1,6 @@
 Template.list.helpers({
     branches: function () {
-        Session.setDefault('filter', 'all');
+        Session.setDefault('filter', 'default');
         Session.setDefault('sort', 'createdOn');
         Session.setDefault('sortDirection', -1);
 
@@ -11,8 +11,9 @@ Template.list.helpers({
         sortOptions = {};
         sortOptions[sortField] = sortDirection;
 
-        if (filter === 'all') {
-            return BranchList.find({}, {sort: sortOptions});
+        // default to show all non-deployed & non-deprecated branches
+        if (filter === 'default') {
+            return BranchList.find({status: {$nin: ['deployed', 'deprecated']}}, {sort: sortOptions});
         }
 
         return BranchList.find({status: {$in: filter}}, {sort: sortOptions});
@@ -41,10 +42,10 @@ Template.list.rendered = function () {
     $(function() {
         $('#filterBranches').multiselect({
             includeSelectAllOption: true,
-            enableFiltering: true,
-            enableCaseInsensitiveFiltering: true,
             selectAllNumber: false,
-            numberDisplayed: 1
+            numberDisplayed: 1,
+            nonSelectedText: 'None',
+            allSelectedText: 'All'
         });
 
         $('#sortBranches').multiselect();

@@ -1,21 +1,25 @@
 <template name="list">
-    <div class="col-md-12 branchOptions">
-        <label for="filterBranches">
+    <div class="col-md-12" id="branchOptions">
+        <button class="addBranch btn btn-success">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Branch
+        </button>
+
+        <label for="filterBranches" class="filterBranchesLabel">
             Filter Branches:
             <select name="filterBranches" id="filterBranches" multiple>
-                <option value="created">Created</option>
-                <option value="inProgress">In Progress</option>
-                <option value="readyForReview">Ready for Review</option>
-                <option value="inReview">In Review</option>
-                <option value="prepareForMaster">Prepare for Master</option>
-                <option value="readyForMaster">Ready for Master</option>
-                <option value="mergedToMaster">Merged to Master</option>
+                <option value="created" selected>Created</option>
+                <option value="inProgress" selected>In Progress</option>
+                <option value="readyForReview" selected>Ready for Review</option>
+                <option value="inReview" selected>In Review</option>
+                <option value="prepareForMaster" selected>Prepare for Master</option>
+                <option value="readyForMaster" selected>Ready for Master</option>
+                <option value="mergedToMaster" selected>Merged to Master</option>
                 <option value="deployed">Deployed</option>
                 <option value="deprecated">Deprecated</option>
             </select>
         </label>
 
-        <label for="sortBranches" style="margin-left: 20px">
+        <label for="sortBranches" class="sortBranchesLabel">
             Sort Branches:
             <div class="btn-group">
                 <select name="sortBranches" id="sortBranches">
@@ -31,10 +35,6 @@
                 </select>
             </div>
         </label>
-
-        <button class="addBranch btn btn-success">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Branch
-        </button>
     </div>
 
     <div class="row">

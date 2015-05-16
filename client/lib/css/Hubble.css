@@ -24,14 +24,10 @@ header.jumbotron {
     float: right;
 }
 
-.addBranch {
-    float: right;
+#branchOptions {
+    padding: 0 0 10px 0;
 }
 
-hr {
-    clear: both;
-}
-
-.branchOptions {
-    padding-bottom: 10px;
+.filterBranchesLabel, .sortBranchesLabel {
+    margin-left: 10px
 }
