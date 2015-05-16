@@ -8,6 +8,10 @@ Template.addBranch.helpers({
     }
 });
 
+Template.addBranch.created = function () {
+    Session.set('crmNumbers', null);
+};
+
 Template.addBranch.events({
     'click #addNewBranch': function () {
         var type = $('#type').val();

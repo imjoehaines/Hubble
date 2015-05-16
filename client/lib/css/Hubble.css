@@ -21,4 +21,5 @@ header.jumbotron {
 .view-branch-status {
     vertical-align: middle;
     padding: 2px 4px;
+    float: right;
 }
