@@ -1,5 +1,11 @@
 Template.addBranch.helpers({
+    'hasCrmTaskNumbers': function() {
+        return Session.get('crmNumbers') && Session.get('crmNumbers').length > 0;
+    },
 
+    'getCrmTaskNumbers': function() {
+        return Session.get('crmNumbers').join(', ');
+    }
 });
 
 Template.addBranch.events({
@@ -24,7 +30,7 @@ Template.addBranch.events({
             team: team,
             createdOn: new Date(),
             status: 'created',
-            contributors: [],
+            contributors: '',
             tests: {
                 acceptance: {
                     done: false,
@@ -54,15 +60,16 @@ Template.addBranch.events({
             isDeprecated: false
         });
 
-        type = $('#type').val('');
-        Session.set('crmNumbers', undefined);
-        name = $('#name').val('');
-        sprints = $('#sprints').val('');
-        description = $('#description').val('');
-        team = $('#team').val('');
+        Session.set('crmNumbers', null);
+
+        // redirect to home page
+        Router.go('/');
     },
 
-    'click #addCrmTaskNumber': function() {
+    'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
+        // if this is a keypress event make sure the key is return
+        if (event.type === 'keypress' && event.which !== 13) return;
+
         var taskNumber = $('#crmTaskNumber').val();
         var crmNumbers = Session.get('crmNumbers') || [];
 

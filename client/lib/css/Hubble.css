@@ -5,3 +5,20 @@ a, a:visited {
 a:hover {
     text-decoration: none !important;
 }
+
+#addCrmTaskNumber {
+    cursor: pointer;
+}
+
+.view-branch-status {
+    vertical-align: middle;
+    padding: 2px 4px;
+}
+
+.jumbotron {
+    padding: 20px !important;
+}
+
+.jumbotron h1 {
+    margin-top: 0;
+}

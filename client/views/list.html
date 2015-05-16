@@ -10,16 +10,10 @@
                     {{> listRow}}
                 {{/each}}
             {{else}}
-                {{> noBranchMessage}}
+                <div class="well text-center">
+                    <h1>Oh no! You have no branches</h1>
+                </div>
             {{/if}}
         </div>
-    </div>
-    <br>
-   
-</template>
-
-<template name="noBranchMessage">
-    <div class="well text-center">
-        <h1>Oh no! You have no branches</h1>
     </div>
 </template>

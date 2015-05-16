@@ -1,29 +1,29 @@
 <template name="listRow">
-   <div class="branch branch-{{status}}">
-   		<a href='viewBranch/{{_id}}'>
-	      <div class="row" style="border-radius:2px;">
-	        <div class="col-sm-2 branch-element branch-element-status-{{status}} text-center">
-	          {{getStatusName status}}
-	        </div>
-	        <div class="col-sm-4 hidden-xs branch-element">
-	          {{name}}
-	        </div>
-	        <div class="col-sm-12 visible-xs branch-element text-center">
-	          {{name}}
-	        </div>
-	        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center border-right">
-	          <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{team}}
-	        </div>
-	        <div class="col-sm-2 visible-xs branch-element branch-element-default text-center">
-	          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{team}} - <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sprint {{sprints}}
-	        </div>
-	        <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center border-right">
-	          <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sprint {{sprints}}
-	        </div>
-	        <div class="col-sm-2 branch-element branch-element-default text-center">
-	          <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{prettifyDate createdOn.valueOf}}
-	        </div>
-	      </div>
-	      </a>
-   </div>
+    <div class="branch branch-{{status}}">
+        <a href='viewBranch/{{_id}}'>
+            <div class="row" style="border-radius:2px;">
+                <div class="col-sm-2 branch-element branch-element-status-{{status}} text-center">
+                    {{getStatusName status}}
+                </div>
+                <div class="col-sm-4 hidden-xs branch-element">
+                    {{name}}
+                </div>
+                <div class="col-sm-12 visible-xs branch-element text-center">
+                    {{name}}
+                </div>
+                <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center border-right">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{team}}
+                </div>
+                <div class="col-sm-2 visible-xs branch-element branch-element-default text-center">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{team}} - <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sprint {{sprints}}
+                </div>
+                <div class="col-sm-2 hidden-xs branch-element branch-element-default text-center border-right">
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Sprint {{sprints}}
+                </div>
+                <div class="col-sm-2 branch-element branch-element-default text-center">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{prettifyDate createdOn.valueOf}}
+                </div>
+            </div>
+        </a>
+    </div>
 </template>

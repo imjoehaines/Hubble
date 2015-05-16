@@ -1,36 +1,41 @@
 <template name="viewBranch">
 <div class="form col-sm-6 col-sm-offset-3">
-<h2>{{name}}</h2>
-<h4>{{getStatusName status}}</h4>
+    <h2>{{name}} <small class="view-branch-status branch-element-status-{{status}}">{{getStatusName status}}</small></h2>
+
     <div class="form-group">
-    <label for="type">Type:</label>
+        <label for="type">Type:</label>
         <select id="type" class="form-control">
             <option>Sprint</option>
             <option>Support</option>
         </select>
     </div>
+
     <div class="form-group">
-        <label for="crmTaskNumber">CRM Task Number:</label>
+        <label for="crmTaskNumber">CRM Task Number(s):</label>
         <div class="input-group">
             <input type="text" id="crmTaskNumber" class="form-control">
-            <div class="input-group-addon">
-                <a id="addCrmTaskNumber">+</a>
-            </div>
+            <a class="input-group-addon" id="addCrmTaskNumber">+</a>
         </div>
-        <p id="crmNumbers"></p>
+        {{#if hasCrmTaskNumbers}}
+            <p style="margin-top: 10px;">Task Numbers: <span id="crmNumbers">{{ getCrmTaskNumbers }}</span></p>
+        {{/if}}
     </div>
+
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" id="name" class="form-control" value="{{name}}">
     </div>
+
     <div class="form-group">
-    <label for="sprints">Sprints:</label>
+        <label for="sprints">Sprints:</label>
         <input type="text" id="sprints" class="form-control" value="{{sprints}}">
     </div>
+
     <div class="form-group">
         <label for="description">Description:</label>
         <textarea id="description" class="form-control">{{description}}</textarea>
     </div>
+
     <div class="form-group">
         <label for="team">Team:</label>
         <select id="team" class="form-control" value="{{team}}">
@@ -39,82 +44,115 @@
             <option>IPAs and APIs</option>
         </select>
     </div>
+
     <div class="form-group">
         <label for="contributors">Contributors:</label>
         <input type="text" id="contributors" class="form-control" value="{{contributors}}">
     </div>
+
     <h3>Tests</h3>
     <div class="form-group">
-        <label for="isAcceptance">Acceptance tests covereage?:</label>
+        <label for="isAcceptance">Are there acceptance tests?</label>
         <select id="isAcceptance" class="form-control" value="{{tests.acceptance.done}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
-            <option value="null">N/A</option>
+            <option value="false" selected={{isSelected tests.acceptance.done false}}>No</option>
+            <option value="true" selected={{isSelected tests.acceptance.done true}}>Yes</option>
+            <option value="null" selected={{isSelected tests.acceptance.done null}}>N/A</option>
         </select>
     </div>
+
     <div class="form-group">
-        <label for="isUnit">Unit tests coverage?:</label>
+        <label for="isUnit">Are there unit tests?</label>
         <select id="isUnit" class="form-control" value="{{tests.unit.done}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected tests.unit.done false}}>No</option>
+            <option value="true" selected={{isSelected tests.unit.done true}}>Yes</option>
             <option value="null">N/A</option>
         </select>
     </div>
+
     <div class="form-group">
-        <label for="isBrowser">Browser tests coverage?:</label>
+        <label for="isBrowser">Has it been browser tested?</label>
         <select id="isBrowser" class="form-control" value="{{tests.browser.done}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected tests.browser.done false}}>No</option>
+            <option value="true" selected={{isSelected tests.browser.done true}}>Yes</option>
             <option value="null">N/A</option>
         </select>
     </div>
+
     <h3>CI</h3>
     <div class="form-group">
-        <label for="isPassingOnCI">Is passing on Bamboo?:</label>
+        <label for="isPassingOnCI">Is passing on Bamboo?</label>
         <select id="isPassingOnCI" class="form-control" value="{{isPassingOnCI}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected isPassingOnCI false}}>No</option>
+            <option value="true" selected={{isSelected isPassingOnCI true}}>Yes</option>
         </select>
     </div>
+
+    <h3>Code Review</h3>
+    <div class="form-group">
+        <label for="isReadyForReview">Is it ready for review?</label>
+        <select id="isReadyForReview" class="form-control" value="{{review.ready}}">
+            <option value="false" selected={{isSelected review.ready false}}>No</option>
+            <option value="true" selected={{isSelected review.ready true}}>Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="isReviewed">Has it passed review?</label>
+        <select id="isReviewed" class="form-control" value="{{review.passed}}">
+            <option value="false" selected={{isSelected review.passed false}}>No</option>
+            <option value="true" selected={{isSelected review.passed true}}>Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="reviewers">Who reviewed it?</label>
+        <input type="text" id="reviewers" class="form-control" value="{{review.reviewers}}">
+    </div>
+
     <h3>Merge Info</h3>
     <div class="form-group">
-        <label for="sucessfulMergeFromMaster">Successful merge from master?:</label>
+        <label for="sucessfulMergeFromMaster">Successful merge from master?</label>
         <select id="sucessfulMergeFromMaster" class="form-control" value="{{mergeInfo.sucessfulMergeFromMaster}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected mergeInfo.sucessfulMergeFromMaster false}}>No</option>
+            <option value="true" selected={{isSelected mergeInfo.sucessfulMergeFromMaster true}}>Yes</option>
         </select>
     </div>
+
     <div class="form-group">
-        <label for="mergedToMaster">Merged to master?:</label>
+        <label for="mergedToMaster">Merged to master?</label>
         <select id="mergedToMaster" class="form-control" value="{{mergeInfo.mergedToMaster}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected mergeInfo.mergedToMaster false}}>No</option>
+            <option value="true" selected={{isSelected mergeInfo.mergedToMaster true}}>Yes</option>
         </select>
     </div>
+
     <div class="form-group">
-    <label for="masterCommitId">Master commit Id:</label>
-        <input type="text" id="masterCommitId" class="form-control" value="{{masterCommitId}}">
+        <label for="masterCommitId">Master commit ID:</label>
+        <input type="text" id="masterCommitId" class="form-control" value="{{mergeInfo.masterCommitId}}">
     </div>
+
     <h3>Deploy</h3>
     <div class="form-group">
-        <label for="isDeployed">Has been deployed?:</label>
+        <label for="isDeployed">Has been deployed?</label>
         <select id="isDeployed" class="form-control" value="{{isDeployed}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected isDeployed false}}>No</option>
+            <option value="true" selected={{isSelected isDeployed true}}>Yes</option>
         </select>
     </div>
+
     <h3>Deprecated</h3>
     <div class="form-group">
-        <label for="isDeprecated">Is branch deprecated?:</label>
+        <label for="isDeprecated">Is branch deprecated?</label>
         <select id="isDeprecated" class="form-control" value="{{isDeprecated}}">
-            <option value=false>No</option>
-            <option value=true>Yes</option>
+            <option value="false" selected={{isSelected isDeprecated false}}>No</option>
+            <option value="true" selected={{isSelected isDeprecated true}}>Yes</option>
         </select>
     </div>
+
     <div class="form-group">
-    <button id="updateBranch" class="btn btn-success btn-block">
-        Update Branch
-    </button>
+        <button id="updateBranch" class="btn btn-success btn-block">
+            Update Branch
+        </button>
     </div>
-    </div>
+</div>
 </template>

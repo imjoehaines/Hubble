@@ -1,73 +1,108 @@
+Template.viewBranch.helpers({
+    'hasCrmTaskNumbers': function() {
+        if (BranchList.findOne({_id: this._id})) {
+            Session.set('crmNumbers', BranchList.findOne({_id: this._id}).crmTaskNumber);
+
+            return BranchList.findOne({_id: this._id}).crmTaskNumber &&
+                BranchList.findOne({_id: this._id}).crmTaskNumber.length > 0;
+        }
+    },
+
+    'getCrmTaskNumbers': function() {
+        return BranchList.findOne({_id: this._id}).crmTaskNumber.join(', ');
+    },
+
+    'isSelected': function(option, value) {
+        return option === value && true || false;
+    }
+});
+
 Template.viewBranch.events({
     'click #updateBranch': function () {
+        var branchId = this._id;
+
         var type = $('#type').val();
         var crmTaskNumber = Session.get('crmNumbers');
         var name = $('#name').val();
         var sprints = $('#sprints').val();
         var description = $('#description').val();
         var team = $('#team').val();
+        var contributors = $('#contributors').val();
+        var reviewers = $('#reviewers').val();
+        var masterCommitId = $('#masterCommitId').val();
 
-        // if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-        //     return;
-        // }
+        // convert strings into boolean - this is gross FIXME
+        var isAcceptance = $('#isAcceptance').val() === 'true' && true || $('#isAcceptance').val() === 'false' && false || null;
+        var isUnit = $('#isUnit').val() === 'true' && true || $('#isUnit').val() === 'false' && false || null;
+        var isBrowser = $('#isBrowser').val() === 'true' && true || $('#isBrowser').val() === 'false' && false || null;
+        var isPassingOnCI = $('#isPassingOnCI').val() === 'true' && true || $('#isPassingOnCI').val() === 'false' && false || null;
+        var isReadyForReview = $('#isReadyForReview').val() === 'true' && true || $('#isReadyForReview').val() === 'false' && false || null;
+        var isReviewed = $('#isReviewed').val() === 'true' && true || $('#isReviewed').val() === 'false' && false || null;
+        var sucessfulMergeFromMaster = $('#sucessfulMergeFromMaster').val() === 'true' && true || $('#sucessfulMergeFromMaster').val() === 'false' && false || null;
+        var mergedToMaster = $('#mergedToMaster').val() === 'true' && true || $('#mergedToMaster').val() === 'false' && false || null;
+        var isDeployed = $('#isDeployed').val() === 'true' && true || $('#isDeployed').val() === 'false' && false || null;
+        var isDeprecated = $('#isDeprecated').val() === 'true' && true || $('#isDeprecated').val() === 'false' && false || null;
 
-       var status;
-
-        if (this.isDeprecated) {
-            status = 'deprecated';
-        } else if (this.contributors.length === 0) {
-            status = 'created';
-        } else {
-            if (this.tests.acceptance.done !== false &&
-                this.tests.unit.done !== false &&
-                this.tests.browser.done !== false &&
-                this.isPassingOnCI &&
-                this.review.ready) {
-                if (this.review.reviewers.length > 0) {
-                    if (this.review.passed) {
-                        if (this.mergeInfo.sucessfulMergeFromMaster) {
-                            if (this.mergeInfo.mergedToMaster && this.mergeInfo.masterCommitId !== null) {
-                                if (this.isDeployed) {
-                                    status = 'deployed';
-                                }
-                                status = 'mergedToMaster';
-                            }
-                            status = 'readyForMaster';
-                        }
-                        status = 'prepareForMaster';
-                    }
-                    status = 'inReview';
-                }
-                status = 'readyForReview';
-            }
-            status = 'inProgress';
+        if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+            return;
         }
 
-        BranchList.update(
-            {
-                _id: this._id
-            }, {
-                $set: {
-                    type: type,
-                    crmTaskNumber: crmTaskNumber,
-                    name: name,
-                    sprints: sprints,
-                    description: description,
-                    team: team,
-                    status: status
+        var branch = {
+            type: type,
+            crmTaskNumber: crmTaskNumber,
+            name: name,
+            sprints: sprints,
+            description: description,
+            team: team,
+            contributors: contributors,
+            tests: {
+                acceptance: {
+                    done: isAcceptance,
+                    testers: []
+                },
+                unit: {
+                    done: isUnit,
+                    testers: []
+                },
+                browser: {
+                    done: isBrowser,
+                    testers: []
                 }
-            }
-        );
+            },
+            review: {
+                ready: isReadyForReview,
+                passed: isReviewed,
+                reviewers: reviewers,
+            },
+            isPassingOnCI: isPassingOnCI,
+            mergeInfo: {
+                sucessfulMergeFromMaster: sucessfulMergeFromMaster,
+                mergedToMaster: mergedToMaster,
+                masterCommitId: masterCommitId,
+            },
+            isDeployed: isDeployed,
+            isDeprecated: isDeprecated
+        };
 
-        type = $('#type').val('');
-        Session.set('crmNumbers', undefined);
-        name = $('#name').val('');
-        sprints = $('#sprints').val('');
-        description = $('#description').val('');
-        team = $('#team').val('');
+        // need a callback to make this a synchronous request
+        Meteor.call('getBranchStatus', branch, function (error, status) {
+            if (error) return; // TODO: do something with error
+
+            branch.status = status;
+            BranchList.update({_id: branchId}, {$set: branch});
+
+            Session.set('crmNumbers', null);
+
+            // redirect to home page
+            Router.go('/');
+        });
+
     },
 
-    'click #addCrmTaskNumber': function() {
+    'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
+        // if this is a keypress event make sure the key is return
+        if (event.type === 'keypress' && event.which !== 13) return;
+
         var taskNumber = $('#crmTaskNumber').val();
         var crmNumbers = Session.get('crmNumbers') || [];
 
