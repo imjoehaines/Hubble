@@ -1,4 +1,4 @@
-# Hubble
+# Hubble [![Codacy Badge](https://www.codacy.com/project/badge/04aba743e40b43e18be8d45e7b4a254a)](https://www.codacy.com/app/joehaines/Hubble)
 The dev bubble
 
 
