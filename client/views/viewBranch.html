@@ -65,7 +65,7 @@
         <select id="isUnit" class="form-control" value="{{tests.unit.done}}">
             <option value="false" selected={{isSelected tests.unit.done false}}>No</option>
             <option value="true" selected={{isSelected tests.unit.done true}}>Yes</option>
-            <option value="null">N/A</option>
+            <option value="null" selected={{isSelected tests.unit.done null}}>N/A</option>
         </select>
     </div>
 
@@ -74,7 +74,7 @@
         <select id="isBrowser" class="form-control" value="{{tests.browser.done}}">
             <option value="false" selected={{isSelected tests.browser.done false}}>No</option>
             <option value="true" selected={{isSelected tests.browser.done true}}>Yes</option>
-            <option value="null">N/A</option>
+            <option value="null" selected={{isSelected tests.browser.done null}}>N/A</option>
         </select>
     </div>
 
