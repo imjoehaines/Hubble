@@ -31,3 +31,9 @@ header.jumbotron {
 hr {
     clear: both;
 }
+
+.branchOptions {
+    clear: both;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
