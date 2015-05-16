@@ -3,13 +3,12 @@ Template.list.helpers({
         Session.setDefault('filter', 'all');
 
         var filter = Session.get('filter');
-        var query;
 
         if (filter === 'all') {
             return BranchList.find({}, {sort: {createdOn: -1}});
         }
 
-        return BranchList.find({status: {$in: [filter]}}, {sort: {createdOn: -1}});
+        return BranchList.find({status: {$in: filter}}, {sort: {createdOn: -1}});
     }
 });
 
@@ -22,3 +21,15 @@ Template.list.events({
         Session.set('filter', $('#filterBranches').val());
     }
 });
+
+Template.list.rendered = function () {
+    $(function() {
+        $('#filterBranches').multiselect({
+            includeSelectAllOption: true,
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            selectAllNumber: false,
+            numberDisplayed: 1
+        });
+    });
+};

@@ -34,7 +34,7 @@ Template.addBranch.events({
             team: team,
             createdOn: new Date(),
             status: 'created',
-            contributors: '',
+            contributors: null,
             tests: {
                 acceptance: {
                     done: false,
