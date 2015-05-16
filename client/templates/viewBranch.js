@@ -89,12 +89,15 @@ Template.viewBranch.events({
             if (error) { return; } // TODO: do something with error
 
             branch.status = status;
-            BranchList.update({_id: branchId}, {$set: branch});
 
-            Session.set('crmNumbers', null);
+            Meteor.call('updateBranch', branchId, branch, function (error) {
+                if (error) { return; }
 
-            // redirect to home page
-            Router.go('/');
+                Session.set('crmNumbers', null);
+
+                // redirect to home page
+                Router.go('/');
+            });
         });
 
     },

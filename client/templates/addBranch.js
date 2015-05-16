@@ -25,7 +25,7 @@ Template.addBranch.events({
             return;
         }
 
-        BranchList.insert({
+        var branch = {
             type: type,
             crmTaskNumber: crmTaskNumber,
             name: name,
@@ -62,12 +62,16 @@ Template.addBranch.events({
             },
             isDeployed: false,
             isDeprecated: false
+        };
+
+        Meteor.call('addBranch', branch, function (error) {
+            if (error) { return error; }
+
+            Session.set('crmNumbers', null);
+
+            // redirect to home page
+            Router.go('/');
         });
-
-        Session.set('crmNumbers', null);
-
-        // redirect to home page
-        Router.go('/');
     },
 
     'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
