@@ -86,28 +86,20 @@ Template.viewBranch.events({
         };
 
         // need a callback to make this a synchronous request
-        Meteor.call('getBranchStatus', branch, function (error, status) {
+        Meteor.call('updateBranch', branchId, branch, function (error) {
             if (error) {
                 var message = getErrorMessage(error);
                 return sAlert.error(message);
             }
-            branch.status = status;
 
-            Meteor.call('updateBranch', branchId, branch, function (error) {
-                if (error) {
-                    var message = getErrorMessage(error);
-                    return sAlert.error(message);
-                }
-
-                Session.set('crmNumbers', null);
-                Session.set('branchSuccess', {
-                    name: name,
-                    type: 'updated'
-                });
-
-                // redirect to home page
-                Router.go('/');
+            Session.set('crmNumbers', null);
+            Session.set('branchSuccess', {
+                name: name,
+                type: 'updated'
             });
+
+            // redirect to home page
+            Router.go('/');
         });
 
     },
