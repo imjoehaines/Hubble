@@ -1,8 +1,15 @@
 Template.addBranch.helpers({
+    /**
+     * Check to see if a branch has CRM task numbers
+     * @return {Boolean}
+     */
     'hasCrmTaskNumbers': function() {
         return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').length > 0;
     },
 
+    /**
+     * @return {String} array of CRM numbers converted to a string
+     */
     'getCrmTaskNumbers': function() {
         return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').join(', ');
     }
@@ -43,10 +50,7 @@ Template.addBranch.events({
             }
 
             Session.set('crmNumbers', null);
-            Session.set('branchSuccess', {
-                name: name,
-                type: 'created'
-            });
+            Session.set('branchSuccess', {name: name, type: 'created'});
 
             // redirect to home page
             Router.go('/');
