@@ -21,7 +21,7 @@ Template.registerHelper('getStatusName', function (status) {
 });
 
 Template.registerHelper('joinArrayWithComma', function (array) {
-    return array.join(', ');
+    return $.isArray(array) && array.join(', ');
 });
 
 Meteor.startup(function () {
