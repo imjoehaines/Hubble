@@ -16,6 +16,11 @@ Template.list.helpers({
             return BranchList.find({status: {$nin: ['deployed', 'deprecated']}}, {sort: sortOptions});
         }
 
+        // filter will be null when no options are selected
+        if (filter === null) {
+            return null;
+        }
+
         return BranchList.find({status: {$in: filter}}, {sort: sortOptions});
     }
 });
