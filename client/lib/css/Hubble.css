@@ -1,12 +1,3 @@
-#mainHeading a, #mainHeading a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-#mainHeading a:hover, #mainHeading a:active {
-    text-decoration: none;
-}
-
 #mainHeading {
     margin-top: 0;
     margin-bottom: 0;
@@ -24,6 +15,15 @@ header.jumbotron {
     background-attachment: fixed;
     background-size: cover;
     color: white;
+}
+
+header.jumbotron a, header.jumbotron a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+header.jumbotron a:hover, header.jumbotron a:active {
+    text-decoration: none;
 }
 
 #addCrmTaskNumber {
