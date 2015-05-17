@@ -32,6 +32,11 @@ header.jumbotron {
     margin-left: 10px
 }
 
+/* hide empty velocity sections */
 .velocity-report.empty {
     display: none !important;
+}
+
+#velocity-status-widget {
+    background: transparent;
 }
