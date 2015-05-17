@@ -52,3 +52,20 @@ header.jumbotron a:hover, header.jumbotron a:active {
 #velocity-status-widget {
     background: transparent;
 }
+
+.s-alert-info {
+    background: rgb(22, 206, 247);
+    background: rgba(22, 206, 247, 0.5);
+}
+.s-alert-success {
+    background: rgb(24, 171, 19);
+    background: rgba(24, 171, 19, 0.5);
+}
+.s-alert-warning {
+    background: rgb(247, 124, 22);
+    background: rgba(247, 124, 22, 0.5);
+}
+.s-alert-error {
+    background: rgb(247, 22, 49);
+    background: rgba(247, 22, 49, 0.5);
+}
