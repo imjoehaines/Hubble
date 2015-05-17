@@ -72,4 +72,13 @@ describe('addBranch.js', function() {
             expect(Template.addBranch.__helpers[' getCrmTaskNumbers']()).toBe('1, 2, 3, 10, 100, 999');
         });
     });
+
+    describe('created', function() {
+        it('should set session variable to null', function() {
+            expect(Session.get('crmNumbers')).toBe(undefined);
+            Template.addBranch.created();
+            expect(Session.get('crmNumbers')).toBe(null);
+        });
+    });
+
 });
