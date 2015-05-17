@@ -1,7 +1,7 @@
 Template.addBranch.events({
     'click #addNewBranch': function () {
         var type = $('#type').val();
-        var crmTaskNumber = $('#crmTaskNumber').val();
+        var crmTaskNumber = $('#crmTaskNumber').val().length > 0 && $('#crmTaskNumber').val().split(', ').map(Number) || [];
         var name = $('#name').val();
         // convert string into array of numbers
         var sprints = $('#sprints').val().split(', ').map(Number);
