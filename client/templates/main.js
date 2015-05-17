@@ -1,6 +1,7 @@
 Template.registerHelper('prettifyDate', function (timestamp) {
-    return moment(timestamp).format('MMMM Do YYYY');
-    //new Date(timestamp).toISOString().slice(0, 10);
+    // if the year matches the current year then ommit it
+    var dateFormat = moment(timestamp).isSame(moment(), 'year') && 'MMMM Do' || 'MMMM Do YYYY';
+    return moment(timestamp).format(dateFormat);
 });
 
 Template.registerHelper('getStatusName', function (status) {
