@@ -49,6 +49,22 @@ header.jumbotron a:hover, header.jumbotron a:active {
     display: none !important;
 }
 
+#velocity-status-widget .velocity-icon-status {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+}
+
+#velocity-status-widget.failed .velocity-icon-status {
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.7, 0.7); background-color: #F71631; border-color: #e2564e;}
+    50% {-webkit-transform: scale(1, 1); background-color: #e2564e; border-color: #F71631;}
+    100% {-webkit-transform: scale(0.7, 0.7); background-color: #F71631; border-color: #e2564e;}
+}
+
 #velocity-status-widget {
     background: transparent;
 }
