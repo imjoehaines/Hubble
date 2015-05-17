@@ -1,17 +1,29 @@
 #mainHeading a, #mainHeading a:visited {
-    color: black;
+    color: white;
+    text-decoration: none;
 }
 
-#mainHeading a:hover {
+#mainHeading a:hover, #mainHeading a:active {
     text-decoration: none;
 }
 
 #mainHeading {
     margin-top: 0;
+    margin-bottom: 0;
+}
+
+#subHeading {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 header.jumbotron {
-    padding: 20px;
+    background-image: url('images/hubble.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
 }
 
 #addCrmTaskNumber {
