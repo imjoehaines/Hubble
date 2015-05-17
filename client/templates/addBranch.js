@@ -17,13 +17,13 @@ Template.addBranch.events({
         var type = $('#type').val();
         var crmTaskNumber = Session.get('crmNumbers');
         var name = $('#name').val();
-        var sprints = $('#sprints').val();
+        // convert string into array of numbers
+        var sprints = $('#sprints').val().split(', ').map(Number);
         var description = $('#description').val();
         var team = $('#team').val();
 
         if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-            sAlert.error('No');
-            return;
+            return sAlert.error('Please fill in all required fields');
         }
 
         var branch = {
@@ -34,41 +34,20 @@ Template.addBranch.events({
             description: description,
             team: team,
             createdOn: new Date(),
-            status: 'created',
-            contributors: null,
-            tests: {
-                acceptance: {
-                    done: false,
-                    testers: []
-                },
-                unit: {
-                    done: false,
-                    testers: []
-                },
-                browser: {
-                    done: false,
-                    testers: []
-                }
-            },
-            review: {
-                ready: false,
-                passed: false,
-                reviewers: [],
-            },
-            isPassingOnCI: false,
-            mergeInfo: {
-                sucessfulMergeFromMaster: false,
-                mergedToMaster: false,
-                masterCommitId: null
-            },
-            isDeployed: false,
-            isDeprecated: false
+            status: 'created'
         };
 
         Meteor.call('addBranch', branch, function (error) {
-            if (error) { return error; }
+            if (error) {
+                var message = getErrorMessage(error);
+                return sAlert.error(message);
+            }
 
             Session.set('crmNumbers', null);
+            Session.set('branchSuccess', {
+                name: name,
+                type: 'created'
+            });
 
             // redirect to home page
             Router.go('/');

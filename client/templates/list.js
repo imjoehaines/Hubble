@@ -50,5 +50,14 @@ Template.list.rendered = function () {
 
         $('#sortBranches').multiselect();
         $('#sortDirection').multiselect();
+
+        // show a success message when a branch gets made or updated
+        var success = Session.get('branchSuccess');
+        if (success) {
+            // Successfully created "a branch" || Successfully updated "a branch"
+            var message = 'Successfully ' + success.type + ' "' + success.name + '"';
+            sAlert.success(message);
+            Session.set('branchSuccess', null);
+        }
     });
 };

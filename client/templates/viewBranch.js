@@ -23,11 +23,12 @@ Template.viewBranch.events({
 
         var type = $('#type').val();
         var name = $('#name').val();
-        var sprints = $('#sprints').val();
+        // convert string into array of numbers
+        var sprints = $('#sprints').val().split(', ').map(Number);
         var description = $('#description').val();
         var team = $('#team').val();
         var contributors = $('#contributors').val();
-        var reviewers = $('#reviewers').val();
+        var reviewers = $('#reviewers').val().split(', ');
         var masterCommitId = $('#masterCommitId').val();
 
         var crmTaskNumber = Session.get('crmNumbers');
@@ -44,7 +45,7 @@ Template.viewBranch.events({
         var isDeprecated = getBooleanFromString($('#isDeprecated').val());
 
         if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-            return;
+            return sAlert.error('Please fill in all required fields');
         }
 
         var branch = {
@@ -86,14 +87,23 @@ Template.viewBranch.events({
 
         // need a callback to make this a synchronous request
         Meteor.call('getBranchStatus', branch, function (error, status) {
-            if (error) { return; } // TODO: do something with error
-
+            if (error) {
+                var message = getErrorMessage(error);
+                return sAlert.error(message);
+            }
             branch.status = status;
 
             Meteor.call('updateBranch', branchId, branch, function (error) {
-                if (error) { return; }
+                if (error) {
+                    var message = getErrorMessage(error);
+                    return sAlert.error(message);
+                }
 
                 Session.set('crmNumbers', null);
+                Session.set('branchSuccess', {
+                    name: name,
+                    type: 'updated'
+                });
 
                 // redirect to home page
                 Router.go('/');

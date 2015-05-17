@@ -1,9 +1,9 @@
-Template.registerHelper('prettifyDate', function(timestamp) {
+Template.registerHelper('prettifyDate', function (timestamp) {
     return moment(timestamp).format('MMMM Do YYYY');
     //new Date(timestamp).toISOString().slice(0, 10);
 });
 
-Template.registerHelper('getStatusName', function(status) {
+Template.registerHelper('getStatusName', function (status) {
     var statuses = {
         created: 'Created',
         inProgress: 'In Progress',
@@ -17,6 +17,10 @@ Template.registerHelper('getStatusName', function(status) {
     };
 
     return statuses[status];
+});
+
+Template.registerHelper('joinArrayWithComma', function (array) {
+    return array.join(', ');
 });
 
 Meteor.startup(function () {
