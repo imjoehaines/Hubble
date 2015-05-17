@@ -61,9 +61,19 @@ Template.addBranch.events({
         var taskNumber = $('#crmTaskNumber').val();
         var crmNumbers = Session.get('crmNumbers') || [];
 
-        if (taskNumber === null || taskNumber === '' ||
-            $.inArray(taskNumber, crmNumbers) !== -1 || !$.isNumeric(taskNumber)) {
-            return;
+        var message = false;
+        if (taskNumber === null || taskNumber === '') {
+            message = 'Please enter a task number';
+        } else if (!$.isNumeric(taskNumber)) {
+            message = 'A task number must be an integer';
+        } else if ($.inArray(taskNumber, crmNumbers) !== -1) {
+            message = 'You can\'t list the same task number twice';
+        }
+
+        if (message !== false) {
+            var validationAlert = Session.get('validationAlert');
+            sAlert.close(validationAlert);
+            return Session.set('validationAlert', sAlert.error(message));
         }
 
         crmNumbers.push(taskNumber);
