@@ -1,10 +1,12 @@
 Template.viewBranch.helpers({
     'hasCrmTaskNumbers': function () {
-        if (BranchList.findOne({_id: this._id})) {
-            Session.set('crmNumbers', BranchList.findOne({_id: this._id}).crmTaskNumber);
+        var branch = BranchList.findOne({_id: this._id});
 
-            return BranchList.findOne({_id: this._id}).crmTaskNumber &&
-                BranchList.findOne({_id: this._id}).crmTaskNumber.length > 0;
+        if (branch) {
+            Session.set('crmNumbers', branch.crmTaskNumber);
+
+            return branch.crmTaskNumber &&
+                branch.crmTaskNumber.length > 0;
         }
     },
 
@@ -20,70 +22,13 @@ Template.viewBranch.helpers({
 Template.viewBranch.events({
     'click #updateBranch': function () {
         var branchId = this._id;
+        var branch;
 
-        var type = $('#type').val();
-        var name = $('#name').val();
-        // convert string into array of numbers
-        var sprints = $('#sprints').val().split(', ').map(Number);
-        var description = $('#description').val();
-        var team = $('#team').val();
-        var contributors = $('#contributors').val();
-        var reviewers = $('#reviewers').val().length > 0 && $('#reviewers').val().split(', ') || [];
-        var masterCommitId = $('#masterCommitId').val();
-
-        var crmTaskNumber = Session.get('crmNumbers');
-
-        var isAcceptance = getBooleanFromString($('#isAcceptance').val());
-        var isUnit = getBooleanFromString($('#isUnit').val());
-        var isBrowser = getBooleanFromString($('#isBrowser').val());
-        var isPassingOnCI = getBooleanFromString($('#isPassingOnCI').val());
-        var isReadyForReview = getBooleanFromString($('#isReadyForReview').val());
-        var isReviewed = getBooleanFromString($('#isReviewed').val());
-        var sucessfulMergeFromMaster = getBooleanFromString($('#sucessfulMergeFromMaster').val());
-        var mergedToMaster = getBooleanFromString($('#mergedToMaster').val());
-        var isDeployed = getBooleanFromString($('#isDeployed').val());
-        var isDeprecated = getBooleanFromString($('#isDeprecated').val());
-
-        if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-            return sAlert.error('Please fill in all required fields');
+        try {
+            branch = getBranchFields();
+        } catch (error) {
+            return sAlert.error(error.message);
         }
-
-        var branch = {
-            type: type,
-            crmTaskNumber: crmTaskNumber,
-            name: name,
-            sprints: sprints,
-            description: description,
-            team: team,
-            contributors: contributors,
-            tests: {
-                acceptance: {
-                    done: isAcceptance,
-                    testers: []
-                },
-                unit: {
-                    done: isUnit,
-                    testers: []
-                },
-                browser: {
-                    done: isBrowser,
-                    testers: []
-                }
-            },
-            review: {
-                ready: isReadyForReview,
-                passed: isReviewed,
-                reviewers: reviewers,
-            },
-            isPassingOnCI: isPassingOnCI,
-            mergeInfo: {
-                sucessfulMergeFromMaster: sucessfulMergeFromMaster,
-                mergedToMaster: mergedToMaster,
-                masterCommitId: masterCommitId,
-            },
-            isDeployed: isDeployed,
-            isDeprecated: isDeprecated
-        };
 
         // need a callback to make this a synchronous request
         Meteor.call('updateBranch', branchId, branch, function (error) {
@@ -94,7 +39,7 @@ Template.viewBranch.events({
 
             Session.set('crmNumbers', null);
             Session.set('branchSuccess', {
-                name: name,
+                name: branch.name,
                 type: 'updated'
             });
 
@@ -106,3 +51,55 @@ Template.viewBranch.events({
 
     'click #addCrmTaskNumber, keypress #crmTaskNumber': handleAddCrmTaskNumber
 });
+
+var getBranchFields = function () {
+    var type = $('#type').val();
+    var name = $('#name').val();
+    var crmTaskNumber = Session.get('crmNumbers');
+
+    // convert string into array of numbers
+    var sprints = $('#sprints').val().length >0 && $('#sprints').val().split(', ').map(Number) || null;
+    var description = $('#description').val();
+    var team = $('#team').val();
+
+    if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+        throw new Error('Please fill in all required fields');
+    }
+
+    return {
+        type: type,
+        crmTaskNumber: crmTaskNumber,
+        name: name,
+        sprints: sprints,
+        description: description,
+        team: team,
+        contributors: $('#contributors').val(),
+        tests: {
+            acceptance: {
+                done: getBooleanFromString($('#isAcceptance').val()),
+                testers: []
+            },
+            unit: {
+                done: getBooleanFromString($('#isUnit').val()),
+                testers: []
+            },
+            browser: {
+                done: getBooleanFromString($('#isBrowser').val()),
+                testers: []
+            }
+        },
+        review: {
+            ready: getBooleanFromString($('#isReadyForReview').val()),
+            passed: getBooleanFromString($('#isReviewed').val()),
+            reviewers: $('#reviewers').val().length > 0 && $('#reviewers').val().split(', ') || [],
+        },
+        isPassingOnCI: getBooleanFromString($('#isPassingOnCI').val()),
+        mergeInfo: {
+            sucessfulMergeFromMaster: getBooleanFromString($('#sucessfulMergeFromMaster').val()),
+            mergedToMaster: getBooleanFromString($('#mergedToMaster').val()),
+            masterCommitId: $('#masterCommitId').val(),
+        },
+        isDeployed: getBooleanFromString($('#isDeployed').val()),
+        isDeprecated: getBooleanFromString($('#isDeprecated').val())
+    };
+};

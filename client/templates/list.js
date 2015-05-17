@@ -56,6 +56,10 @@ Template.list.rendered = function () {
         $('#sortBranches').multiselect();
         $('#sortDirection').multiselect();
 
+        Session.set('filter', 'default');
+        Session.set('sort', 'createdOn');
+        Session.set('sortDirection', -1);
+
         // show a success message when a branch gets made or updated
         var success = Session.get('branchSuccess');
         if (success) {
