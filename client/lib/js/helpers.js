@@ -19,34 +19,6 @@ getErrorMessage = function (error) {
 };
 
 /**
- * Handles event fired when trying to add a new CRM number
- * @param  {Object} event the event that fired
- */
-handleAddCrmTaskNumber = function (event) {
-    // if this is a keypress event make sure the key is return
-    if (event.type === 'keypress' && event.which !== 13) { return; }
-
-    var taskNumber = $('#crmTaskNumber').val();
-    var crmNumbers = Session.get('crmNumbers') || [];
-
-    var message = getCrmValidationMessage(taskNumber, crmNumbers);
-
-    if (message !== false) {
-        var validationAlert = Session.get('validationAlert');
-        sAlert.close(validationAlert);
-        return Session.set('validationAlert', sAlert.error(message));
-    }
-
-    crmNumbers.push(taskNumber);
-
-    Session.set('crmNumbers', crmNumbers);
-
-    $('#crmTaskNumber').val('');
-
-    $('#crmNumbers').html(crmNumbers.join(', '));
-};
-
-/**
  * Gets a validation message when trying to add a CRM number
  * @param  {mixed} taskNumber the number trying to be added
  * @param  {Array} crmNumbers an array of already added nubers

@@ -10,13 +10,7 @@
 
     <div class="form-group">
         <label for="crmTaskNumber">CRM Task Number(s):</label>
-        <div class="input-group">
-            <input type="text" id="crmTaskNumber" class="form-control">
-            <a class="input-group-addon" id="addCrmTaskNumber">+</a>
-        </div>
-        {{#if hasCrmTaskNumbers}}
-            <p style="margin-top: 10px;">Task Numbers: <span id="crmNumbers">{{ getCrmTaskNumbers }}</span></p>
-        {{/if}}
+        <input type="text" id="crmTaskNumber" class="form-control">
     </div>
 
     <div class="form-group">

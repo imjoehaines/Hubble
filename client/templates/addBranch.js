@@ -1,28 +1,7 @@
-Template.addBranch.helpers({
-    /**
-     * Check to see if a branch has CRM task numbers
-     * @return {Boolean}
-     */
-    'hasCrmTaskNumbers': function () {
-        return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').length > 0;
-    },
-
-    /**
-     * @return {String} array of CRM numbers converted to a string
-     */
-    'getCrmTaskNumbers': function () {
-        return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').join(', ');
-    }
-});
-
-Template.addBranch.created = function () {
-    Session.set('crmNumbers', null);
-};
-
 Template.addBranch.events({
     'click #addNewBranch': function () {
         var type = $('#type').val();
-        var crmTaskNumber = Session.get('crmNumbers');
+        var crmTaskNumber = $('#crmTaskNumber').val();
         var name = $('#name').val();
         // convert string into array of numbers
         var sprints = $('#sprints').val().split(', ').map(Number);
@@ -49,14 +28,11 @@ Template.addBranch.events({
                 return sAlert.error(message);
             }
 
-            Session.set('crmNumbers', null);
             Session.set('branchSuccess', {name: name, type: 'created'});
 
             // redirect to home page
             Router.go('/');
         });
-    },
-
-    'click #addCrmTaskNumber, keypress #crmTaskNumber': handleAddCrmTaskNumber
+    }
 });
 

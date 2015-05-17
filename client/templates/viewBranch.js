@@ -1,19 +1,4 @@
 Template.viewBranch.helpers({
-    'hasCrmTaskNumbers': function () {
-        var branch = BranchList.findOne({_id: this._id});
-
-        if (branch) {
-            Session.set('crmNumbers', branch.crmTaskNumber);
-
-            return branch.crmTaskNumber &&
-                branch.crmTaskNumber.length > 0;
-        }
-    },
-
-    'getCrmTaskNumbers': function () {
-        return BranchList.findOne({_id: this._id}).crmTaskNumber.join(', ');
-    },
-
     'isSelected': function (option, value) {
         return option === value && true || false;
     }
@@ -22,7 +7,7 @@ Template.viewBranch.helpers({
 var getBranchFields = function () {
     var type = $('#type').val();
     var name = $('#name').val();
-    var crmTaskNumber = Session.get('crmNumbers');
+    var crmTaskNumber = $('#crmTaskNumber').val().length > 0 && $('#crmTaskNumber').val().split(', ').map(Number) || [];
 
     // convert string into array of numbers
     var sprints = $('#sprints').val().length > 0 && $('#sprints').val().split(', ').map(Number) || null;
@@ -91,7 +76,6 @@ Template.viewBranch.events({
                 return sAlert.error(message);
             }
 
-            Session.set('crmNumbers', null);
             Session.set('branchSuccess', {
                 name: branch.name,
                 type: 'updated'
@@ -101,7 +85,5 @@ Template.viewBranch.events({
             Router.go('/');
         });
 
-    },
-
-    'click #addCrmTaskNumber, keypress #crmTaskNumber': handleAddCrmTaskNumber
+    }
 });
