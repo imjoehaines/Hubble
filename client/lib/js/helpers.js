@@ -55,7 +55,7 @@ handleAddCrmTaskNumber = function (event) {
 getCrmValidationMessage = function (taskNumber, crmNumbers) {
     if (taskNumber === null || taskNumber === '') {
         return 'Please enter a task number';
-    } else if (!($.isNumeric(taskNumber) && Math.floor(taskNumber) === taskNumber)) {
+    } else if (!($.isNumeric(taskNumber)) && Math.floor(taskNumber) !== taskNumber) {
         return 'A task number must be an integer';
     } else if ($.inArray(taskNumber, crmNumbers) !== -1) {
         return 'You can\'t list the same task number twice';

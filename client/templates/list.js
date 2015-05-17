@@ -39,7 +39,7 @@ Template.list.events({
 });
 
 Template.list.rendered = function () {
-    $(function() {
+    $(function () {
         $('#filterBranches').multiselect({
             includeSelectAllOption: true,
             selectAllNumber: false,

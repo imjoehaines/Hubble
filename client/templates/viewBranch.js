@@ -1,5 +1,5 @@
 Template.viewBranch.helpers({
-    'hasCrmTaskNumbers': function() {
+    'hasCrmTaskNumbers': function () {
         if (BranchList.findOne({_id: this._id})) {
             Session.set('crmNumbers', BranchList.findOne({_id: this._id}).crmTaskNumber);
 
@@ -8,11 +8,11 @@ Template.viewBranch.helpers({
         }
     },
 
-    'getCrmTaskNumbers': function() {
+    'getCrmTaskNumbers': function () {
         return BranchList.findOne({_id: this._id}).crmTaskNumber.join(', ');
     },
 
-    'isSelected': function(option, value) {
+    'isSelected': function (option, value) {
         return option === value && true || false;
     }
 });
@@ -28,7 +28,7 @@ Template.viewBranch.events({
         var description = $('#description').val();
         var team = $('#team').val();
         var contributors = $('#contributors').val();
-        var reviewers = $('#reviewers').val().split(', ');
+        var reviewers = $('#reviewers').val().length > 0 && $('#reviewers').val().split(', ') || [];
         var masterCommitId = $('#masterCommitId').val();
 
         var crmTaskNumber = Session.get('crmNumbers');

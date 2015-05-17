@@ -3,14 +3,14 @@ Template.addBranch.helpers({
      * Check to see if a branch has CRM task numbers
      * @return {Boolean}
      */
-    'hasCrmTaskNumbers': function() {
+    'hasCrmTaskNumbers': function () {
         return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').length > 0;
     },
 
     /**
      * @return {String} array of CRM numbers converted to a string
      */
-    'getCrmTaskNumbers': function() {
+    'getCrmTaskNumbers': function () {
         return $.isArray(Session.get('crmNumbers')) && Session.get('crmNumbers').join(', ');
     }
 });

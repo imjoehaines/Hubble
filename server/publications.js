@@ -1,3 +1,3 @@
-Meteor.publish('branchlist', function() {
+Meteor.publish('branchlist', function () {
     return BranchList.find({});
 });
