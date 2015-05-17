@@ -104,25 +104,5 @@ Template.viewBranch.events({
 
     },
 
-    'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
-        // if this is a keypress event make sure the key is return
-        if (event.type === 'keypress' && event.which !== 13) { return; }
-
-        var taskNumber = $('#crmTaskNumber').val();
-        var crmNumbers = Session.get('crmNumbers') || [];
-
-        if (taskNumber === null || taskNumber === '' ||
-            $.inArray(taskNumber, crmNumbers) !== -1 || !$.isNumeric(taskNumber)) {
-            return;
-        }
-
-        crmNumbers.push(taskNumber);
-
-        Session.set('crmNumbers', crmNumbers);
-
-        $('#crmTaskNumber').val('');
-
-        $('#crmNumbers').html(crmNumbers.join(', '));
-    }
-
+    'click #addCrmTaskNumber, keypress #crmTaskNumber': handleAddCrmTaskNumber
 });

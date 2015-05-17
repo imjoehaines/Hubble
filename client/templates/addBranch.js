@@ -33,7 +33,6 @@ Template.addBranch.events({
             sprints: sprints,
             description: description,
             team: team,
-            createdOn: new Date(),
             status: 'created'
         };
 
@@ -54,34 +53,6 @@ Template.addBranch.events({
         });
     },
 
-    'click #addCrmTaskNumber, keypress #crmTaskNumber': function(event) {
-        // if this is a keypress event make sure the key is return
-        if (event.type === 'keypress' && event.which !== 13) { return; }
-
-        var taskNumber = $('#crmTaskNumber').val();
-        var crmNumbers = Session.get('crmNumbers') || [];
-
-        var message = false;
-        if (taskNumber === null || taskNumber === '') {
-            message = 'Please enter a task number';
-        } else if (!$.isNumeric(taskNumber)) {
-            message = 'A task number must be an integer';
-        } else if ($.inArray(taskNumber, crmNumbers) !== -1) {
-            message = 'You can\'t list the same task number twice';
-        }
-
-        if (message !== false) {
-            var validationAlert = Session.get('validationAlert');
-            sAlert.close(validationAlert);
-            return Session.set('validationAlert', sAlert.error(message));
-        }
-
-        crmNumbers.push(taskNumber);
-
-        Session.set('crmNumbers', crmNumbers);
-
-        $('#crmTaskNumber').val('');
-
-        $('#crmNumbers').html(crmNumbers.join(', '));
-    }
+    'click #addCrmTaskNumber, keypress #crmTaskNumber': handleAddCrmTaskNumber
 });
+
