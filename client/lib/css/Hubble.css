@@ -1,11 +1,7 @@
-#mainHeading {
+#mainHeading, #subHeading {
     margin-top: 0;
     margin-bottom: 0;
-}
-
-#subHeading {
-    margin-top: 0;
-    margin-bottom: 0;
+    text-shadow: 1px 1px 5px black;
 }
 
 header.jumbotron {
@@ -15,6 +11,7 @@ header.jumbotron {
     background-attachment: fixed;
     background-size: cover;
     color: white;
+    box-shadow: 0 0 20px 0 rgba(20, 20, 20, 0.6);
 }
 
 header.jumbotron a, header.jumbotron a:visited {
