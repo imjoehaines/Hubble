@@ -14,26 +14,14 @@ getBooleanFromString = function (string) {
  * @return {String} an error message
  */
 getErrorMessage = function (error) {
-    return error.reason === 'Match failed' && 'Validation failed, please check you filled the form in correctly.' ||
-        'An unexpected error occured, please quote error code igds78fsd6f8s7dtfiusdufsid829 if contacting Mayden support.';
-};
+    var message = 'An unexpected error occured, please quote error code igds78fsd6f8s7dtfiusdufsid829 if contacting Mayden support.';
 
-/**
- * Gets a validation message when trying to add a CRM number
- * @param  {mixed} taskNumber the number trying to be added
- * @param  {Array} crmNumbers an array of already added nubers
- * @return {String|false} a message is failed validation, otherwise false
- */
-getCrmValidationMessage = function (taskNumber, crmNumbers) {
-    if (taskNumber === null || taskNumber === '') {
-        return 'Please enter a task number';
-    } else if (!($.isNumeric(taskNumber)) && Math.floor(taskNumber) !== taskNumber) {
-        return 'A task number must be an integer';
-    } else if ($.inArray(taskNumber, crmNumbers) !== -1) {
-        return 'You can\'t list the same task number twice';
+    // if this is a validation error, tell the user
+    if (_.isObject(error) && _.has(error, 'reason') && error.reason === 'Match failed') {
+        message = 'Validation failed, please check you filled the form in correctly.';
     }
 
-    return false;
+    return message;
 };
 
 /**
