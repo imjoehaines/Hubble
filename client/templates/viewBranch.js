@@ -5,55 +5,44 @@ Template.viewBranch.helpers({
 });
 
 var getBranchFields = function () {
-    var type = $('#type').val();
-    var name = $('#name').val();
-    var crmTaskNumber = $('#crmTaskNumber').val().length > 0 && $('#crmTaskNumber').val().split(', ').map(Number) || [];
+   var branch;
+    try {
+        branch = getMainBranchFields();
 
-    // convert string into array of numbers
-    var sprints = $('#sprints').val().length > 0 && $('#sprints').val().split(', ').map(Number) || null;
-    var description = $('#description').val();
-    var team = $('#team').val();
-
-    if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
-        throw new Error('Please fill in all required fields');
+        // grab the rest of the fields and add them to the branch object
+        $.extend(true, branch, {
+            contributors: $('#contributors').val(),
+            tests: {
+                acceptance: {
+                    done: getBooleanFromString($('#isAcceptance').val()),
+                    testers: []
+                },
+                unit: {
+                    done: getBooleanFromString($('#isUnit').val()),
+                    testers: []
+                },
+                browser: {
+                    done: getBooleanFromString($('#isBrowser').val()),
+                    testers: []
+                }
+            },
+            isPassingOnCI: getBooleanFromString($('#isPassingOnCI').val()),
+            review: {
+                ready: getBooleanFromString($('#isReadyForReview').val()),
+                passed: getBooleanFromString($('#isReviewed').val()),
+                reviewers: $('#reviewers').val().length > 0 && $('#reviewers').val().replace(' ', '').split(',') || [],
+            },
+            mergeInfo: {
+                sucessfulMergeFromMaster: getBooleanFromString($('#sucessfulMergeFromMaster').val()),
+                mergedToMaster: getBooleanFromString($('#mergedToMaster').val()),
+                masterCommitId: $('#masterCommitId').val(),
+            },
+            isDeployed: getBooleanFromString($('#isDeployed').val()),
+            isDeprecated: getBooleanFromString($('#isDeprecated').val())
+        });
+    } catch (error) {
+        return sAlert.error(error.message);
     }
-
-    var branch = {
-        type: type,
-        crmTaskNumber: crmTaskNumber,
-        name: name,
-        sprints: sprints,
-        description: description,
-        team: team,
-        contributors: $('#contributors').val(),
-        tests: {
-            acceptance: {
-                done: getBooleanFromString($('#isAcceptance').val()),
-                testers: []
-            },
-            unit: {
-                done: getBooleanFromString($('#isUnit').val()),
-                testers: []
-            },
-            browser: {
-                done: getBooleanFromString($('#isBrowser').val()),
-                testers: []
-            }
-        },
-        isPassingOnCI: getBooleanFromString($('#isPassingOnCI').val()),
-        review: {
-            ready: getBooleanFromString($('#isReadyForReview').val()),
-            passed: getBooleanFromString($('#isReviewed').val()),
-            reviewers: $('#reviewers').val().length > 0 && $('#reviewers').val().split(', ') || [],
-        },
-        mergeInfo: {
-            sucessfulMergeFromMaster: getBooleanFromString($('#sucessfulMergeFromMaster').val()),
-            mergedToMaster: getBooleanFromString($('#mergedToMaster').val()),
-            masterCommitId: $('#masterCommitId').val(),
-        },
-        isDeployed: getBooleanFromString($('#isDeployed').val()),
-        isDeprecated: getBooleanFromString($('#isDeprecated').val())
-    };
 
     return branch;
 };

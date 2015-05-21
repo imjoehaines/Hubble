@@ -35,3 +35,34 @@ getCrmValidationMessage = function (taskNumber, crmNumbers) {
 
     return false;
 };
+
+/**
+ * Gets the main fields for a branch (type, crmTaskNumber, name, sprints,
+ * description & team)
+ * @return {Object} An object with the main branch fields
+ */
+getMainBranchFields = function () {
+    var type = $('#type').val();
+    var name = $('#name').val();
+    var description = $('#description').val();
+    var team = $('#team').val();
+
+    // convert strings into array of numbers
+    var crmTaskNumber = $('#crmTaskNumber').val().length > 0 &&
+        $('#crmTaskNumber').val().replace(' ', '').split(',').map(Number) || null;
+    var sprints = $('#sprints').val().length > 0 &&
+        $('#sprints').val().replace(' ', '').split(',').map(Number) || null;
+
+    if (!type || !crmTaskNumber || !name || !sprints || !description || !team) {
+        throw new Error('Please fill in all required fields');
+    }
+
+    return {
+        type: type,
+        crmTaskNumber: crmTaskNumber,
+        name: name,
+        sprints: sprints,
+        description: description,
+        team: team
+    };
+};
