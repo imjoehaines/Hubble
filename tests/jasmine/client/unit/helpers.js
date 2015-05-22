@@ -68,7 +68,6 @@ describe('helpers.js', function () {
             });
 
             it('should throw an error when some fields are missing', function () {
-                var previousValue = '';
                 $.each(fields, function (index) {
                     $(this).val('');
 
