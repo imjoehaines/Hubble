@@ -1,7 +1,8 @@
 Template.registerHelper('prettifyDate', function (timestamp) {
-    // if the year matches the current year then ommit it
-    var dateFormat = moment(timestamp).isSame(moment(), 'year') && 'MMMM Do' || 'MMMM Do YYYY';
-    return moment(timestamp).format(dateFormat);
+    // moment doesn't allow us to get only the ordinal so we have to do this :(
+    var date = moment(timestamp).format('MMMM Do');
+    var ordinal = date.slice(-2);
+    return date.slice(0, -2) + '<sup>' + ordinal + '</sup>';
 });
 
 Template.registerHelper('getStatusName', function (status) {

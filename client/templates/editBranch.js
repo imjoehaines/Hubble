@@ -1,4 +1,4 @@
-Template.viewBranch.helpers({
+Template.editBranch.helpers({
     'isSelected': function (option, value) {
         return option === value && true || false;
     }
@@ -47,7 +47,7 @@ var getBranchFields = function () {
     return branch;
 };
 
-Template.viewBranch.events({
+Template.editBranch.events({
     'click #updateBranch': function () {
         var branchId = this._id;
         var branch;
