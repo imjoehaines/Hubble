@@ -30,7 +30,7 @@ var getBranchFields = function () {
             review: {
                 ready: getBooleanFromString($('#isReadyForReview').val()),
                 passed: getBooleanFromString($('#isReviewed').val()),
-                reviewers: $('#reviewers').val().length > 0 && $('#reviewers').val().replace(' ', '').split(',') || [],
+                reviewers: $('#reviewers').val().length > 0 && getArrayFromString($('#reviewers').val()) || [],
             },
             mergeInfo: {
                 sucessfulMergeFromMaster: getBooleanFromString($('#sucessfulMergeFromMaster').val()),
