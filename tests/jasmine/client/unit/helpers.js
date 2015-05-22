@@ -1,4 +1,115 @@
+/**
+ * Unit tests for /lib/helpers.js
+ */
 describe('helpers.js', function () {
+    describe('getBranchStatus', function() {
+        var basicBranch;
+        beforeEach(function () {
+            basicBranch = {
+                isDeprecated: false,
+                contributors: ['bob'],
+                tests: {
+                    acceptance: { done: true },
+                    unit: { done: true },
+                    browser: { done: true }
+                }
+            };
+        });
+
+        it('should return deprecated for deprecated branches', function() {
+            expect(getBranchStatus({isDeprecated: true})).toBe('deprecated');
+        });
+
+        it('should return created when there are no contributors', function() {
+            expect(getBranchStatus({contributors: []})).toBe('created');
+        });
+
+        it('should return inProgress when a branch is untested', function() {
+            expect(getBranchStatus(basicBranch)).toBe('inProgress');
+        });
+
+        it('should return readyForReview when a branch is ready for review', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: [] }
+            });
+
+            expect(getBranchStatus(branch)).toBe('readyForReview');
+        });
+
+        it('should return inReview when a branch is being reviewed', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: ['martha'] }
+            });
+
+            expect(getBranchStatus(branch)).toBe('inReview');
+        });
+
+        it('should return prepareForMaster when a branch is being prepared for master', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: ['martha'], passed: true },
+                mergeInfo: { sucessfulMergeFromMaster: false }
+            });
+
+            expect(getBranchStatus(branch)).toBe('prepareForMaster');
+        });
+
+        it('should return readyForMaster when a branch is ready for master', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: ['martha'], passed: true },
+                mergeInfo: { sucessfulMergeFromMaster: true }
+            });
+
+            expect(getBranchStatus(branch)).toBe('readyForMaster');
+        });
+
+        it('should return mergedToMaster when a branch is ready for master', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: ['martha'], passed: true },
+                mergeInfo: { sucessfulMergeFromMaster: true, mergedToMaster: true, masterCommitId: 6 }
+            });
+
+            expect(getBranchStatus(branch)).toBe('mergedToMaster');
+        });
+
+        it('should return deployed when a branch is deployed', function() {
+            var branch = _.extend(basicBranch, {
+                isPassingOnCI: true,
+                review: { ready: true, reviewers: ['martha'], passed: true },
+                mergeInfo: { sucessfulMergeFromMaster: true, mergedToMaster: true, masterCommitId: 6 },
+                isDeployed: true
+            });
+
+            expect(getBranchStatus(branch)).toBe('deployed');
+        });
+    });
+
+    describe('validateBranch', function() {
+        it('should throw an error when a branch is wrong', function() {
+            expect(function () {
+                validateBranch({});
+            }).toThrow();
+        });
+
+        it('should\'t cate about optional fields', function() {
+            expect(function () {
+                validateBranch({
+                    type: 'Support',
+                    crmTaskNumber: [123],
+                    name: 'bob\'s big branch',
+                    sprints: 12,
+                    description: 'bob made a branch that was big',
+                    team: 'Alpha Team',
+                    status: 'created'
+                });
+            }).not.toThrow();
+        });
+    });
+
     describe('getBooleanFromString', function () {
         it('should return true when passed "true"', function () {
             expect(getBooleanFromString('true')).toBe(true);
@@ -11,6 +122,7 @@ describe('helpers.js', function () {
         it('should return null when passed anything else', function () {
             expect(getBooleanFromString('something')).toBe(null);
         });
+
         it('shouldn\'t care about whitespace before/after the string', function () {
             expect(getBooleanFromString(' true')).toBe(true);
             expect(getBooleanFromString(' true ')).toBe(true);
