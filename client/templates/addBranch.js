@@ -14,7 +14,7 @@ Template.addBranch.events({
                 return sAlert.error(getErrorMessage(error));
             }
 
-            Session.set('branchSuccess', {name: name, type: 'created'});
+            Session.set('branchSuccess', { name: branch.name, type: 'created' });
 
             // redirect to home page
             Router.go('/');
