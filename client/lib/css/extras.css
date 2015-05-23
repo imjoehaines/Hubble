@@ -1,7 +1,5 @@
 .branch-element {
     padding-top: 15px;
-    margin-top: -10px;
-    margin-bottom: -10px;
     padding-bottom: 15px;
 }
 
@@ -64,7 +62,7 @@
     cursor: pointer;
     display: block;
     border: 1px solid black;
-    padding: 10px 15px;
+    padding: 0 15px;
     margin-top: 10px;
 }
 
