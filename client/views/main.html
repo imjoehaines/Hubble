@@ -1,20 +1,21 @@
+<head>
+    <link rel="icon" href="/favicon.ico">
+    <title>Hubble</title>
+</head>
+
 <template name="main">
-    <head>
-        <title>Hubble</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <header class="jumbotron text-center" style="border-radius: 0;">
-                    <a href="/">
-                        <h1 id="mainHeading">Hubble</h1>
-                        <h3 id="subHeading">The Developer Bubble</h3>
-                    </a>
-                </header>
-            </div>
-        {{> yield}}
+    <div class="container-fluid">
+        <div class="row">
+            <header class="jumbotron text-center" style="border-radius: 0;">
+                <a href="/">
+                    <h1 id="mainHeading">Hubble</h1>
+                    <h3 id="subHeading">The Developer Bubble</h3>
+                </a>
+            </header>
         </div>
 
-        {{> sAlert}}
-    </body>
+    {{> yield}}
+    </div>
+
+    {{> sAlert}}
 </template>
