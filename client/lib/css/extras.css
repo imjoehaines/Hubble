@@ -9,8 +9,9 @@
 }
 
 @media (min-width: 768px) {
-    .branch-element-default.border-right {
-        border-right:5px solid #ffffff;
+    .border {
+        border-left: 1px solid #BFBFBF;
+        border-right: 1px solid #BFBFBF;
     }
 }
 
